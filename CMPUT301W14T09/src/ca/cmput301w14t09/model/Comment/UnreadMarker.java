@@ -1,16 +1,22 @@
 package ca.cmput301w14t09.model.Comment;
 
-import java.util.Collection;
-
-import ca.cmput301w14t09.model.Profile;
+import java.util.Date;
 
 
-public class UnreadMarker {
+public class UnreadMarker implements Comparable<UnreadMarker> {
 	private boolean unread;
 	private Comment comment;
 	
 	public UnreadMarker() {
 		unread = true;
+	}
+	
+	/**
+	 * Compares this Favorite to another Favorite.
+	 */
+	public int compareTo(UnreadMarker otherMarker) {
+		Date compareDate = ((UnreadMarker) otherMarker).comment.getPostDate();
+		return this.comment.getPostDate().compareTo(compareDate);
 	}
 	
 	public boolean isUnread() {

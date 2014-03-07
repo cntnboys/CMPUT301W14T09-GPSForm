@@ -6,7 +6,7 @@ import ca.cmput301w14t09.model.GeoLocation;
 import ca.cmput301w14t09.model.Picture;
 
 
-public class Comment implements ICacheable {
+public class Comment implements ICacheable, Comparable<Comment> {
 	private Thread thread;
 	private GeoLocation geoLocation;
 	private Picture attachment;
@@ -24,6 +24,13 @@ public class Comment implements ICacheable {
 		favoriteCount = 0;
 	}
 	
+	/**
+	 * Compares this Comment to another Comment.
+	 */
+	public int compareTo(Comment otherComment) {
+		Date compareDate = ((Comment) otherComment).getPostDate();
+		return this.postDate.compareTo(compareDate);
+	}
 	
 	public Thread getThread() {
 		return thread;
@@ -101,5 +108,12 @@ public class Comment implements ICacheable {
 	 */
 	public void setFavoriteCount(int favoriteCount) {
 		this.favoriteCount = favoriteCount;
+	}
+	
+	/**
+	 * @return the postDate
+	 */
+	public Date getPostDate() {
+		return postDate;
 	}
 }

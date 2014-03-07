@@ -1,13 +1,19 @@
 package ca.cmput301w14t09.model.Comment;
 
-import ca.cmput301w14t09.model.Profile;
+import java.util.Date;
 
-
-
-public class Favorite {
+public class Favorite implements Comparable<Favorite> {
 	private String name;
 	private Comment comment;
 
+	/**
+	 * Compares this Favorite to another Favorite.
+	 */
+	public int compareTo(Favorite otherFavorite) {
+		Date compareDate = ((Favorite) otherFavorite).comment.getPostDate();
+		return this.comment.getPostDate().compareTo(compareDate);
+	}
+	
 	public Comment getComment() {
 		return comment;
 	}
