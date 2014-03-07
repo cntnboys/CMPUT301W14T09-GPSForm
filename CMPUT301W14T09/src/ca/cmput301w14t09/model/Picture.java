@@ -2,6 +2,8 @@ package ca.cmput301w14t09.model;
 
 import java.util.Collection;
 
+import ca.cmput301w14t09.model.Comment.Comment;
+
 
 
 public class Picture {

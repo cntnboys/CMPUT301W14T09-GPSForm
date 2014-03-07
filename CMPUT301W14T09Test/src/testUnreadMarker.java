@@ -1,5 +1,5 @@
-import ca.cmput301w14t09.model.Comment;
-import ca.cmput301w14t09.model.UnreadMarker;
+import ca.cmput301w14t09.model.Comment.Comment;
+import ca.cmput301w14t09.model.Comment.UnreadMarker;
 import junit.framework.TestCase;
 
 
