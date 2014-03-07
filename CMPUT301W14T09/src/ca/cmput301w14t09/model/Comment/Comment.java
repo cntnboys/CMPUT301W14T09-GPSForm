@@ -24,6 +24,15 @@ public class Comment implements ICacheable {
 		favoriteCount = 0;
 	}
 	
+	
+	public Thread getThread() {
+		return thread;
+	}
+	
+	public void setThread(Thread newThread) {
+		this.thread = newThread;
+	}
+	
 	/**
 	 * @return the geoLocation
 	 */
