@@ -13,7 +13,7 @@ public class Thread {
 	public void addToThread(Comment comment) {
 		// Set comment thread.
 		this.lastUpdated = comment.getPostDate();
-		comment.thread = this;
+		comment.setThread(this);
 		
 		// Iterate through and append to tail.
 		ListIterator cursor = comments.findTail();
