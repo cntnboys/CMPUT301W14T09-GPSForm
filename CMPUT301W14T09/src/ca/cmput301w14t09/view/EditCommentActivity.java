@@ -1,7 +1,7 @@
 package ca.cmput301w14t09.view;
 
 import ca.cmput301w14t09.model.*;
-import ca.cmput301w14t09.model.Comment.Comment;
+import ca.cmput301w14t09.model.comment.Comment;
 
 
 public class EditCommentActivity {

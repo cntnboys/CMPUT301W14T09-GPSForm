@@ -1,4 +1,4 @@
-package ca.cmput301w14t09.model.Comment;
+package ca.cmput301w14t09.model.comment;
 
 /*
  * LinkedNode encloses any data object node, to be used as a Node for LinkedList.

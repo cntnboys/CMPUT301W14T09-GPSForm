@@ -1,4 +1,4 @@
-package ca.cmput301w14t09.model.Comment;
+package ca.cmput301w14t09.model.comment;
 
 import java.util.Date;
 

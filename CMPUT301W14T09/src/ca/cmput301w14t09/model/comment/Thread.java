@@ -1,4 +1,4 @@
-package ca.cmput301w14t09.model.Comment;
+package ca.cmput301w14t09.model.comment;
 
 import java.util.Date;
 import java.util.LinkedList;
@@ -18,10 +18,16 @@ public class Thread {
 		// Set comment thread.
 		this.lastUpdated = comment.getPostDate();
 		comment.setThread(this);
+		comment.setPostDate(new Date());
 		
 		LinkNode newNode = new LinkNode(comment);
 		comments.addLast(newNode);
 	}
+	
+	public void sort() {
+		
+	}
+	
 	
 	public LinkedList<LinkNode> getComments() { return comments; }
 	public String getName() { return name; }

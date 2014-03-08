@@ -1,4 +1,4 @@
-package ca.cmput301w14t09.model.Comment;
+package ca.cmput301w14t09.model.comment;
 
 import java.util.Date;
 
@@ -115,5 +115,13 @@ public class Comment implements ICacheable, Comparable<Comment> {
 	 */
 	public Date getPostDate() {
 		return postDate;
+	}
+	
+	/**
+	 * Set the post date variable. 
+	 * @param now
+	 */
+	public void setPostDate(Date now) {
+		this.postDate = now;
 	}
 }
