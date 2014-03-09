@@ -1,15 +1,17 @@
 package ca.cmput301w15t09.model.cache;
 
+import java.util.ArrayList;
+
+import ca.cmput301w14t09.model.user.User;
+
 public class Cache {
+	private ArrayList<User> users;
+	
 	/* CACHE STRUCTURE:
 	   USERS
-	   USER
-	 	USER PROFILE
-	 		FAVORITES
-			UNREAD MARKERS
 	   CACHED ACTIONS
 		ACTION TO POST */
-	
+
 	// WHAT ARE THE ACTIONS WE CAN POST?
 	//  MAKE / EDIT A COMMENT - comment, action (MAKE/EDIT/FAVORITE/READ)
 	//  FAVORITE A COMMENT - comment, new favorite = favorite name, comment
