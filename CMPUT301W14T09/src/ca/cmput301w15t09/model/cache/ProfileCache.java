@@ -28,7 +28,7 @@ public class ProfileCache implements ICacheable<ProfileCache> {
 	/**
 	 * If true, this user owns this profile cache.  Should always check before using cache.
 	 */
-	boolean isOwner(User user) {
+	public boolean isOwner(User user) {
 		if (this.userName == user.getUserName())
 			return true;
 		return false;
@@ -38,15 +38,16 @@ public class ProfileCache implements ICacheable<ProfileCache> {
 	/**
 	 * Determines class of object and adds it to corresponding queue.
 	 */
-	void add(Object object)
+	public void add(Object object)
 	{
 		comments.add((Comment)object);
 	}
 	
 	/**
 	 * Determines class of object and removes it from the corresponding queue.
+	 * Should only be used after push to server.
 	 */
-	void remove(Object object)
+	private void remove(Object object)
 	{
 		comments.remove((Comment)object);
 	}

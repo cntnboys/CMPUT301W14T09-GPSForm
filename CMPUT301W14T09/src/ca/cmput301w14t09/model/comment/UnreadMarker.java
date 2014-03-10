@@ -83,7 +83,7 @@ public class UnreadMarker implements ICacheable<UnreadMarker>, Comparable<Unread
 		Date compareDate = ((UnreadMarker) otherMarker).comment.getPostDate();
 		return this.comment.getPostDate().compareTo(compareDate);
 	}
-	
+
 	public boolean isUnread() {
 		return unread;
 	}
@@ -92,7 +92,6 @@ public class UnreadMarker implements ICacheable<UnreadMarker>, Comparable<Unread
 	public void setUnread(boolean unread) {
 		this.unread = unread;
 	}
-
 
 	public Comment getComment() {
 		return comment;
@@ -106,6 +105,8 @@ public class UnreadMarker implements ICacheable<UnreadMarker>, Comparable<Unread
 
 	/**
 	 * Go through all comments, check a read flag exists for each one.
+	 * TODO: I'm pretty sure this won't actually work - oldMarkers is made up of UnreadMarkers, so it is logical
+	 * that it won't say it "contains" a Comment.
 	*/
 	public ArrayList<UnreadMarker> generateNewMarkers(ArrayList<UnreadMarker> oldMarkers, ArrayList<Comment> allComments) {
 		ArrayList<UnreadMarker> markers = new ArrayList<UnreadMarker>();
