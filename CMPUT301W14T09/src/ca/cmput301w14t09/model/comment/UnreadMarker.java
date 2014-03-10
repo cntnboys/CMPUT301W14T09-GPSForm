@@ -6,6 +6,7 @@ import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.util.ArrayList;
 import java.util.Date;
 
 import android.app.Activity;
@@ -20,6 +21,11 @@ public class UnreadMarker implements ICacheable<UnreadMarker>, Comparable<Unread
 	
 	public UnreadMarker() {
 		unread = true;
+	}
+	
+	public UnreadMarker(boolean unread, Comment comment) {
+		this.unread = unread;
+		this.comment = comment;
 	}
 
 	/**
@@ -46,6 +52,7 @@ public class UnreadMarker implements ICacheable<UnreadMarker>, Comparable<Unread
 	
 	/**
 	 * Loads this object, specified by name, from cache with userName.sav
+	 * https://github.com/Mrbilec/CMPUT301W14T09-GPSForm/blob/saveBranch/CMPUT301W14T09/src/ca/cmput301w14t09/FileManaging/FileSaving.java
 	 */
 	public UnreadMarker load(String userName, String name, Activity main) {
         Gson gson = new Gson();
@@ -70,6 +77,7 @@ public class UnreadMarker implements ICacheable<UnreadMarker>, Comparable<Unread
 	
 	/**
 	 * Compares this Favorite to another Favorite.
+	 * https://github.com/Mrbilec/CMPUT301W14T09-GPSForm/blob/saveBranch/CMPUT301W14T09/src/ca/cmput301w14t09/FileManaging/FileSaving.java
 	 */
 	public int compareTo(UnreadMarker otherMarker) {
 		Date compareDate = ((UnreadMarker) otherMarker).comment.getPostDate();
@@ -97,9 +105,23 @@ public class UnreadMarker implements ICacheable<UnreadMarker>, Comparable<Unread
 
 
 	/**
+	 * Go through all comments, check a read flag exists for each one.
 	*/
-	public void generateNewMarkers() {
+	public ArrayList<UnreadMarker> generateNewMarkers(ArrayList<UnreadMarker> oldMarkers, ArrayList<Comment> allComments) {
+		ArrayList<UnreadMarker> markers = new ArrayList<UnreadMarker>();
+		boolean isRead = false;
 		
+		// Compare each comment node, and mark if read only if it is already read in oldComments.
+		for(int index = 0; index < allComments.size(); index++) {
+			isRead = false;
+			
+			if (oldMarkers.contains(allComments.get(index)) == true)
+					isRead = true;
+
+			markers.add(new UnreadMarker(isRead, comment));
+		}
+		
+		return markers;
 	}
 
 }

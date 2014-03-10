@@ -1,33 +1,46 @@
 package ca.cmput301w15t09.model.cache;
 
+import java.io.BufferedReader;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.InputStreamReader;
 import java.util.ArrayList;
 
-import model.UnreadMarker;
+import android.app.Activity;
+import android.content.Context;
+
+import com.google.gson.Gson;
 
 import ca.cmput301w14t09.model.comment.Comment;
-import ca.cmput301w14t09.model.comment.Favorite;
+import ca.cmput301w14t09.model.comment.ICacheable;
 import ca.cmput301w14t09.model.user.User;
 
-public class ProfileCache {
-	private User user;
+public class ProfileCache implements ICacheable<ProfileCache> {
+	private String userName;
 	private ArrayList<Comment> comments;
-	private ArrayList<Favorite> favorites;
-	private ArrayList<UnreadMarker> unreadMarkers;
+	
+	public ProfileCache(User user) {
+		userName = user.getUserName();
+	}
+	
+	/**
+	 * If true, this user owns this profile cache.  Should always check before using cache.
+	 */
+	boolean isOwner(User user) {
+		if (this.userName == user.getUserName())
+			return true;
+		return false;
+	}
+	
 	
 	/**
 	 * Determines class of object and adds it to corresponding queue.
 	 */
 	void add(Object object)
 	{
-		if (object.getClass() == Comment.class) {
-			comments.add((Comment)object);
-		}
-		else if (object.getClass() == Favorite.class) {
-			favorites.add((Favorite)object);
-		}
-		else {
-			unreadMarkers.add((UnreadMarker)object);
-		}
+		comments.add((Comment)object);
 	}
 	
 	/**
@@ -35,20 +48,54 @@ public class ProfileCache {
 	 */
 	void remove(Object object)
 	{
-		if (object.getClass() == Comment.class) {
-			comments.remove((Comment)object);
-		}
-		else if (object.getClass() == Favorite.class) {
-			favorites.remove((Favorite)object);
-		}
-		else {
-			unreadMarkers.remove((UnreadMarker)object);
+		comments.remove((Comment)object);
+	}
+	
+	/**
+	 * Write this object to cache using GSon.
+	 * https://github.com/Mrbilec/CMPUT301W14T09-GPSForm/blob/saveBranch/CMPUT301W14T09/src/ca/cmput301w14t09/FileManaging/FileSaving.java
+	 */
+	public void serialize(String userName, ProfileCache object, Activity main) {
+		Gson gson = new Gson();
+		String jsonIn = gson.toJson(object);           
+
+		try {
+			FileOutputStream fos = main.openFileOutput(userName + ".sav",
+					Context.MODE_PRIVATE );
+			fos.write(jsonIn.getBytes());
+			fos.close();
+		} catch (FileNotFoundException e) {
+
+			e.printStackTrace();
+		} catch (IOException e) {
+
+			e.printStackTrace();
 		}
 	}
 	
-	// ProfileCache responsibility.
-//	void save(UserCache cache);
-//	void load(UserCache cache);
-//	void push(ICacheable next);
-//	void pull(ICacheable next);
+	/**
+	 * Loads this object, specified by name, from cache with userName.sav
+	 */
+	public ProfileCache load(String userName, String name, Activity main) {
+        Gson gson = new Gson();
+        ProfileCache cache = null;
+        
+        try{
+            FileInputStream fis = main.openFileInput(userName + ".sav");
+            InputStreamReader isr = new InputStreamReader(fis);
+            BufferedReader buff = new BufferedReader(isr);
+            String jsonOut = buff.readLine();
+            cache = gson.fromJson(jsonOut, ProfileCache.class);
+            buff.close();
+        } catch (FileNotFoundException e) {
+
+            e.printStackTrace();
+        } catch (IOException e) {
+
+            e.printStackTrace();
+        }
+        return cache;
+	}
+	
+	
 }

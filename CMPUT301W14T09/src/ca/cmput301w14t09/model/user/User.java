@@ -4,8 +4,9 @@ public class User {
 	private Profile profile;
 	private String userName;
 	
-	public User() {
-		profile = new Profile(userName);
+	public User(String userName) {
+		this.userName = userName;
+		this.profile = new Profile(this);
 	}
 	
 	/**
@@ -19,5 +20,12 @@ public class User {
 	 */
 	public void setUserName(String userName) {
 		this.userName = userName;
+	}
+
+	/**
+	 * @return the profile
+	 */
+	public Profile getProfile() {
+		return profile;
 	}
 }

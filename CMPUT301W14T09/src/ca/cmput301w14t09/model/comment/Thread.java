@@ -3,7 +3,7 @@ package ca.cmput301w14t09.model.comment;
 import java.util.Date;
 import java.util.LinkedList;
 
-public class Thread {
+public class Thread implements Comparable<Thread> {
 	private LinkedList<LinkNode> comments;
 	private Date lastUpdated;
 	private String name;
@@ -24,12 +24,17 @@ public class Thread {
 		comments.addLast(newNode);
 	}
 	
-	public void sort() {
-		
+	/**
+	 * Compares this Comment to another Comment.
+	 */
+	public int compareTo(Thread otherThread) {
+		Date compareDate = ((Thread) otherThread).getLastUpdated();
+		return this.getLastUpdated().compareTo(compareDate);
 	}
 	
 	
 	public LinkedList<LinkNode> getComments() { return comments; }
 	public String getName() { return name; }
 	public int getLength() { return length; }
+	public Date getLastUpdated() { return lastUpdated; }
 }

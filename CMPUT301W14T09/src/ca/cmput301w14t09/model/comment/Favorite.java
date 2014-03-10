@@ -41,6 +41,7 @@ public class Favorite implements ICacheable<Favorite>, Comparable<Favorite> {
 	
 	/**
 	 * Loads this object, specified by name, from cache with userName.sav
+	 * https://github.com/Mrbilec/CMPUT301W14T09-GPSForm/blob/saveBranch/CMPUT301W14T09/src/ca/cmput301w14t09/FileManaging/FileSaving.java
 	 */
 	public Favorite load(String userName, String name, Activity main) {
         Gson gson = new Gson();
