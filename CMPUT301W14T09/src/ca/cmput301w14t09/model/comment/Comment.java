@@ -1,12 +1,24 @@
 package ca.cmput301w14t09.model.comment;
 
+import java.io.BufferedReader;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.util.ArrayList;
 import java.util.Date;
+
+import com.google.gson.Gson;
+
+import android.app.Activity;
+import android.content.Context;
 
 import ca.cmput301w14t09.model.GeoLocation;
 import ca.cmput301w14t09.model.Picture;
 
 
-public class Comment implements ICacheable, Comparable<Comment> {
+public class Comment implements ICacheable<Comment>, Comparable<Comment> {
 	private Thread thread;
 	private GeoLocation geoLocation;
 	private Picture attachment;
@@ -22,6 +34,52 @@ public class Comment implements ICacheable, Comparable<Comment> {
 		authorName = "";
 		commentText = "";
 		favoriteCount = 0;
+	}
+	
+	/**
+	 * Write this object to cache using GSon.
+	 * https://github.com/Mrbilec/CMPUT301W14T09-GPSForm/blob/saveBranch/CMPUT301W14T09/src/ca/cmput301w14t09/FileManaging/FileSaving.java
+	 */
+	public void serialize(String userName, Comment object, Activity main) {
+		Gson gson = new Gson();
+		String jsonIn = gson.toJson(object);           
+
+		try {
+			FileOutputStream fos = main.openFileOutput(userName + ".sav",
+					Context.MODE_PRIVATE );
+			fos.write(jsonIn.getBytes());
+			fos.close();
+		} catch (FileNotFoundException e) {
+
+			e.printStackTrace();
+		} catch (IOException e) {
+
+			e.printStackTrace();
+		}
+	}
+	
+	/**
+	 * Loads this object, specified by name, from cache with userName.sav
+	 */
+	public Comment load(String userName, String name, Activity main) {
+        Gson gson = new Gson();
+        Comment comment = null;
+        
+        try{
+            FileInputStream fis = main.openFileInput(userName + ".sav");
+            InputStreamReader isr = new InputStreamReader(fis);
+            BufferedReader buff = new BufferedReader(isr);
+            String jsonOut = buff.readLine();
+            comment = gson.fromJson(jsonOut, Comment.class);
+            buff.close();
+        } catch (FileNotFoundException e) {
+
+            e.printStackTrace();
+        } catch (IOException e) {
+
+            e.printStackTrace();
+        }
+        return comment;
 	}
 	
 	/**
