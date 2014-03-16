@@ -22,7 +22,7 @@
          android:id="@+id/android:list"
          android:layout_width="fill_parent"
          android:layout_height="500dp"
-         android:layout_alignRight="@+id/button2"
+         android:layout_alignRight="@+id/datebutton"
          android:layout_below="@+id/comment"
          android:layout_weight="1"
          android:scrollbars="vertical" >

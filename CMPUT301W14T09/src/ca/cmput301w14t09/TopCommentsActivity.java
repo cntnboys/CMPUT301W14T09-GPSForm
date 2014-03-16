@@ -66,6 +66,7 @@ public class TopCommentsActivity extends ListActivity {
 	protected Intent intent;
 	protected User user;
 	protected Dialog dialog;
+	protected Dialog dialog2;
 	protected ListView aCommentList;
 	Comment comment;
 	
@@ -81,6 +82,10 @@ public class TopCommentsActivity extends ListActivity {
 	EditText commentText;
 			
 	GeoLocation mygeolocation = new GeoLocation();
+	//new Location Controller 
+    final LocationController lc = new LocationController();
+    
+    int num = 0;
 	
 
 
@@ -89,8 +94,7 @@ public class TopCommentsActivity extends ListActivity {
 		super.onCreate(savedInstanceState);
 		
 		
-		//new Location Controller 
-        final LocationController lc = new LocationController();
+		
 
 
         //get Location Manager setup
@@ -134,9 +138,7 @@ public class TopCommentsActivity extends ListActivity {
         lm.requestLocationUpdates(LocationManager.GPS_PROVIDER, 1000, 0, locationListener);
        // lc.requestLocationUpdates(locationListener);
         
-        mygeolocation = lc.getmyGeoLocation();
-	    System.out.println("toplat"+mygeolocation.getLatitude());
-	    System.out.println("toplng"+mygeolocation.getLongitude());
+       
 		
 		setContentView(R.layout.activity_top_comments);
 		topActivity = this;
@@ -182,12 +184,46 @@ public class TopCommentsActivity extends ListActivity {
 		
 		ArrayList<Comment> topComments;
 		
-		 
-			
+		//get geolocation for sorting by geolocation
+		 mygeolocation = lc.getmyGeoLocation();
+		 System.out.println("toplat"+mygeolocation.getLatitude());
+		 System.out.println("toplng"+mygeolocation.getLongitude());
+		
+		dialog2 = new Dialog(this);
+		dialog2.setContentView(R.layout.search_pop_up);
+		dialog2.setTitle("Search Comment");
+		Button prox=(Button)dialog2.findViewById(R.id.proxbutton);
+		Button datesearch=(Button)dialog2.findViewById(R.id.datebutton);
+		
+		
+		//proxy button
+				prox.setOnClickListener(new View.OnClickListener() {
+
+					@Override
+					public void onClick(View v) {
+						System.out.println("proxy clicked");
+						dialog2.dismiss();	
+					}
+				});
+		
+				//proxy button
+				datesearch.setOnClickListener(new View.OnClickListener() {
+
+					@Override
+					public void onClick(View v) {
+						System.out.println("date button clicked");
+						dialog2.dismiss();
+
+					}
+				});
+		
+		
+		
+		 dialog2.show();
 		
 		
 		try {
-			topComments = ElasticSearchOperations.pullThreads();
+			topComments = ElasticSearchOperations.pullThreads(num);
 			ThreadAdapter adapter = new ThreadAdapter(this,
 					R.layout.thread_view, topComments);
 			aCommentList.setAdapter(adapter);

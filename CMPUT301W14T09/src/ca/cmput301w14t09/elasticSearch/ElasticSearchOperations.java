@@ -81,7 +81,7 @@ public class ElasticSearchOperations {
 	 * @return list of names of Threads.
 	 * @throws InterruptedException
 	 */
-	public static ArrayList<Comment> pullThreads() throws InterruptedException {
+	public static ArrayList<Comment> pullThreads(int num) throws InterruptedException {
 		final CountDownLatch latch = new CountDownLatch(1);
 		final ArrayList<Comment> commentList = new ArrayList<Comment> ();
 		Thread thread = new Thread() {

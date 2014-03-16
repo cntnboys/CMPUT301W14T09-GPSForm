@@ -12,7 +12,7 @@
      android:id="@+id/editUsername"
      android:layout_width="wrap_content"
      android:layout_height="wrap_content"
-     android:layout_above="@+id/button2"
+     android:layout_above="@+id/datebutton"
      android:layout_alignParentLeft="true"
      android:layout_alignParentRight="true"
      android:layout_marginBottom="59dp"
@@ -20,7 +20,7 @@
      android:hint="New Username" />
 
  <Button
-     android:id="@+id/button2"
+     android:id="@+id/datebutton"
      android:layout_width="wrap_content"
      android:layout_height="wrap_content" 
      android:layout_alignParentBottom="true"
@@ -33,8 +33,8 @@
      android:id="@+id/favorite1"
      android:layout_width="wrap_content"
      android:layout_height="wrap_content"
-     android:layout_above="@+id/button2"
-     android:layout_alignLeft="@+id/button2"
+     android:layout_above="@+id/datebutton"
+     android:layout_alignLeft="@+id/datebutton"
      android:layout_alignParentRight="true"
      android:onClick="newUser"
      android:text="Continue" />
