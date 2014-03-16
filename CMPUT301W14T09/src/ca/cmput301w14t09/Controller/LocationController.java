@@ -3,6 +3,7 @@ package ca.cmput301w14t09.Controller;
 import java.util.ArrayList;
 import java.util.Date;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.location.LocationListener;
 import android.location.LocationManager;
@@ -15,11 +16,17 @@ import ca.cmput301w14t09.model.GeoLocation;
 public class LocationController {
 
     private GeoLocation geo = new GeoLocation();
-
+    private GeoLocation mygeo = new GeoLocation();
+    
     private double lat;
     private double lng;
+    
+    private double lat2;
+    private double lng2;
+    
     LocationManager lm = null;
     int count = 0;
+    int count2 = 0;
 
     public GeoLocation getGeoLocation() {
         return geo;
@@ -29,6 +36,16 @@ public class LocationController {
         geo.setLatitude(lat);
         geo.setLongitude(lng);
     }
+    
+    public void setmyGeoLocation() {
+        mygeo.setLatitude(lat2);
+        mygeo.setLongitude(lng2);
+    }
+    
+    public GeoLocation getmyGeoLocation() {
+        return mygeo;
+    }
+
 
     public ArrayList<String> getLocationNames(){
         return null;
@@ -79,9 +96,36 @@ public class LocationController {
         }
 
     }
+    
+    
+    public void mylocationchanged(android.location.Location location){
 
 
-    public void updatelocation(Context context, String longitude, String latitude) {      
+        if(location != null){
+
+            if(count2<2){
+
+                lat2 = location.getLatitude();
+                lng2 = location.getLongitude();
+
+
+                Date date = new Date(location.getTime());
+                //tv.setText("your location is " +lat+"\n" + lng +"\n" + date.toString());
+               
+                System.out.println("top comment location changed");
+                System.out.println("long: "+lng2);
+                System.out.println("lat: "+lat2);
+                //set geolocation to current location
+                setmyGeoLocation();
+                count2 = count + 1;
+            }
+        }
+
+    }
+
+
+    @SuppressLint("NewApi")
+	public void updatelocation(Context context, String longitude, String latitude) {      
         // Fix for passing in blank parameters.
         if(latitude.isEmpty() == true) { 
             lat = 1;

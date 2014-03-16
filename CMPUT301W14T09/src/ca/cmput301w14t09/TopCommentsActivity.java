@@ -41,6 +41,7 @@ import ca.cmput301w14t09.FileManaging.FileSaving;
 import ca.cmput301w14t09.elasticSearch.ElasticSearchOperations;
 import ca.cmput301w14t09.model.Comment;
 import ca.cmput301w14t09.model.CommentAdapter;
+import ca.cmput301w14t09.model.GeoLocation;
 import ca.cmput301w14t09.model.ThreadAdapter;
 
 import ca.cmput301w14t09.model.PictureModelList;
@@ -78,12 +79,65 @@ public class TopCommentsActivity extends ListActivity {
 	
 	EditText authorText;
 	EditText commentText;
+			
+	GeoLocation mygeolocation = new GeoLocation();
 	
 
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
+		
+		
+		//new Location Controller 
+        final LocationController lc = new LocationController();
+
+
+        //get Location Manager setup
+       // lc.setLocationManager(getApplicationContext());
+
+
+        // Obtain LocationManager service 
+        LocationManager lm = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
+
+
+        // Retrieve location updates through LocationListener interface
+        final LocationListener locationListener = new LocationListener(){
+            // To Do: override the four methods.
+
+
+            public void onProviderDisabled (String provider){
+
+            }
+
+            public void onProviderEnabled (String provider){
+
+
+            }
+
+            public void onStatusChanged (String provider, int status, Bundle extras){
+
+
+            }
+
+            @Override
+            public void onLocationChanged(android.location.Location location) {
+
+                lc.mylocationchanged(location);
+
+
+            }
+        };
+
+
+        //set up location update request.
+        lm.requestLocationUpdates(LocationManager.GPS_PROVIDER, 1000, 0, locationListener);
+       // lc.requestLocationUpdates(locationListener);
+        
+        mygeolocation = lc.getmyGeoLocation();
+	    System.out.println("toplat"+mygeolocation.getLatitude());
+	    System.out.println("toplng"+mygeolocation.getLongitude());
+		
 		setContentView(R.layout.activity_top_comments);
 		topActivity = this;
 		
@@ -100,6 +154,11 @@ public class TopCommentsActivity extends ListActivity {
 			}
 
 		});
+		
+		
+		
+		
+	
 	}
 
 	@Override
@@ -118,7 +177,15 @@ public class TopCommentsActivity extends ListActivity {
 	@Override
 	protected void onStart(){
 		super.onStart();
+		
+		
+		
 		ArrayList<Comment> topComments;
+		
+		 
+			
+		
+		
 		try {
 			topComments = ElasticSearchOperations.pullThreads();
 			ThreadAdapter adapter = new ThreadAdapter(this,
