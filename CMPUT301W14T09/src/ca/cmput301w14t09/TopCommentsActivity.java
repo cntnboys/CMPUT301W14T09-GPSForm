@@ -19,6 +19,8 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 package ca.cmput301w14t09;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 
 import android.annotation.SuppressLint;
 import android.app.Dialog;
@@ -129,7 +131,7 @@ public class TopCommentsActivity extends ListActivity {
 	}
 
 	/**
-	 * onStart popluates the listview with results from
+	 * onStart populates the listview with results from
 	 * elasticSearch, finding all of the top comments
 	 * @param thread
 	 */
@@ -423,4 +425,28 @@ public class TopCommentsActivity extends ListActivity {
 
 	}
 
+	public void sortPictures(View v){
+		
+		ArrayList<Comment> commentList = null;
+		try {
+			commentList = ElasticSearchOperations.pullThreads();
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		Collections.sort(commentList, new Comparator<Comment>() {
+			  public int compare(Comment o1, Comment o2) {
+			      if ( o1.getHasPicture() == null || o2.getHasPicture() == null)
+			        return 0;
+			      return o1.getHasPicture().compareTo(o2.getHasPicture());
+			  }
+			});
+		Collections.reverse(commentList);
+		
+		adapter = new ThreadAdapter(this,
+				R.layout.thread_view, commentList);
+		aCommentList.setAdapter(adapter);
+		adapter.notifyDataSetChanged();
+	}
 }

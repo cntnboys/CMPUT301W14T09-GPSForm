@@ -35,7 +35,8 @@
          android:layout_alignBottom="@+id/favorite"
          android:layout_alignRight="@+id/android:list"
          android:textSize="12sp"
-         android:text="@string/sortButton" />
+         android:text="@string/sortButton" 
+         android:onClick="sortPictures"/>
 
      <Button
          android:id="@+id/comment"

@@ -33,19 +33,23 @@
         </activity>
         <activity
             android:name="ca.cmput301w14t09.TopCommentsActivity"
-            android:label="@string/title_activity_top_comments" >
+            android:label="@string/title_activity_top_comments"
+            android:screenOrientation="portrait">
         </activity>
         <activity
             android:name="ca.cmput301w14t09.FavoritesActivity"
-            android:label="@string/title_activity_favorites" >
+            android:label="@string/title_activity_favorites" 
+            android:screenOrientation="portrait">
         </activity>
         <activity
             android:name="ca.cmput301w14t09.CommentListActivity"
-            android:label="@string/title_activity_comment_list" >
+            android:label="@string/title_activity_comment_list" 
+            android:screenOrientation="portrait">
         </activity>
         <activity 
             android:name="ca.cmput301w14t09.PictureActivity"
-            android:label="title_activity_picture">
+            android:label="title_activity_picture"
+            android:screenOrientation="portrait">
         </activity>
     </application>
 
