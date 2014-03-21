@@ -71,9 +71,6 @@ public class TopCommentsActivity extends ListActivity {
 	public static final int OBTAIN_PIC_REQUEST_CODE = 117;
 	public static final int MEDIA_TYPE_IMAGE = 1;
 
-	//Directory name to store captured images
-	private static final String IMAGE_DIRECTORY_NAME = "CAMERA";
-
 	//File uri to store Images
 	private Uri fileUri;
 
@@ -102,7 +99,6 @@ public class TopCommentsActivity extends ListActivity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_top_comments);
 		topActivity = this;
-	//	attachment = false;
 
 		aCommentList = (ListView) findViewById(android.R.id.list);
 
@@ -172,9 +168,8 @@ public class TopCommentsActivity extends ListActivity {
 		commentText=(EditText)dialog.findViewById(R.id.commentText);
 		final EditText tv2 = (EditText)dialog.findViewById(R.id.longtext3);
 		final EditText tv3 = (EditText)dialog.findViewById(R.id.lattext3);
-
-		//new Location Controller 
 		final LocationController lc = new LocationController();
+		
 		this.pictureController = new PictureController(this);
 
 		//https://github.com/baoliangwang/CurrentLocation
@@ -182,12 +177,10 @@ public class TopCommentsActivity extends ListActivity {
 		LocationManager lm = (LocationManager)getSystemService(Context.LOCATION_SERVICE);
 
 		authorText.setText(user.getProfile().getAuthorName());
+		
 		Button save=(Button)dialog.findViewById(R.id.save);
 		Button btnCancel=(Button)dialog.findViewById(R.id.cancel);
-
-		//update location button
 		Button btnSetLocation = (Button)dialog.findViewById(R.id.changebutton);
-
 		picImagePreview = (ImageView)dialog.findViewById(R.id.picImagePreview);  
 		addPicImageButton = (ImageButton) dialog.findViewById(R.id.takePicture);
 
@@ -200,7 +193,9 @@ public class TopCommentsActivity extends ListActivity {
 			public void onClick(View v) {
 				// capture picture
 				captureImage();
-			//	attachment = true;
+				/**
+				 * Make test case to check if captureImage simply runs by itself, with no errors.
+				 */
 			}
 		});
 
@@ -243,7 +238,6 @@ public class TopCommentsActivity extends ListActivity {
 		//https://github.com/baoliangwang/CurrentLocation
 		lm.requestLocationUpdates(LocationManager.GPS_PROVIDER, 1000, 0, locationListener);
 
-
 		//update location button
 		btnSetLocation.setOnClickListener(new View.OnClickListener() {
 
@@ -278,7 +272,6 @@ public class TopCommentsActivity extends ListActivity {
 				user.getProfile().setAuthorName(text2);
 				FileSaving.saveUserFile(user, topActivity);
 
-			//	picture = comment.getPicture();
 				picture = pictureController.finalizePicture(picture);
 				comment = CreateComment.newComment(lc, text2, text1, true, picture);
 
@@ -300,11 +293,6 @@ public class TopCommentsActivity extends ListActivity {
 			}
 		});
 
-	}
-
-	
-	public void saveComment(){
-		
 	}
 
 	/**
