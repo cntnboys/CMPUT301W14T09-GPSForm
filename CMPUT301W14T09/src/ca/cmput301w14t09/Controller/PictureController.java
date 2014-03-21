@@ -25,7 +25,6 @@ import java.util.Locale;
 import android.app.Activity;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
-import android.graphics.Matrix;
 import android.net.Uri;
 import android.os.Environment;
 import android.util.Log;
@@ -42,6 +41,9 @@ public class PictureController extends Activity{
     public static final int MAX_BITMAP_DIMENSIONS = 70;
     
     private TopCommentsActivity activity;
+    
+    //If Picture has attachment or not
+    private Boolean hasAttachment;
     
     public PictureController(TopCommentsActivity activity){
     	this.activity = activity;
@@ -129,21 +131,34 @@ public class PictureController extends Activity{
     public Bitmap finalizePicture(Bitmap picture){
     	if (picture == null){
     		picture = BitmapFactory.decodeResource(this.activity.getResources(), R.drawable.no_img);
+    		hasAttachment = false;
     	}
     	
-    	if(picture.getWidth() > MAX_BITMAP_DIMENSIONS || picture.getHeight() > MAX_BITMAP_DIMENSIONS){
-    		double scalingFactor = picture.getWidth()*1.0 / MAX_BITMAP_DIMENSIONS;
+    	else {
+    		if(picture.getWidth() > MAX_BITMAP_DIMENSIONS || picture.getHeight() > MAX_BITMAP_DIMENSIONS){
+    			double scalingFactor = picture.getWidth()*1.0 / MAX_BITMAP_DIMENSIONS;
     		
-    		if(picture.getHeight() > picture.getWidth())
-    			scalingFactor = picture.getHeight() * 1.0 / MAX_BITMAP_DIMENSIONS;
+    			if(picture.getHeight() > picture.getWidth())
+    				scalingFactor = picture.getHeight() * 1.0 / MAX_BITMAP_DIMENSIONS;
     		
-    		int newWidth = (int)Math.round(picture.getWidth()/scalingFactor);
-    		int newHeight = (int)Math.round(picture.getHeight()/scalingFactor);
+    			int newWidth = (int)Math.round(picture.getWidth()/scalingFactor);
+    			int newHeight = (int)Math.round(picture.getHeight()/scalingFactor);
     		
-    		 picture = Bitmap.createScaledBitmap(picture, newWidth, newHeight, false);
+    			picture = Bitmap.createScaledBitmap(picture, newWidth, newHeight, false);
     	
+    		}
+    		hasAttachment = true;
     	}
     	return picture;
+
+    }
+    
+    /**
+     * Returns based on if comment has a picture attached to it or not
+     * @return
+     */
+    public Boolean returnHasAttachment(){
+    	return hasAttachment;
     }
 
 

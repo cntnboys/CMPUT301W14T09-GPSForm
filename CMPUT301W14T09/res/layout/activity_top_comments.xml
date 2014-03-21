@@ -8,23 +8,11 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context=".TopCommentsActivity" >
 
-    <Button
-        android:id="@+id/comment"
-        android:layout_width="140dp"
-        android:layout_height="wrap_content"
-        android:layout_alignParentRight="true"
-        android:layout_alignTop="@+id/favorite1"
-        android:layout_marginLeft="5dp"
-        android:text="Comment"
-        android:onClick="popUp" />
-
      <ListView
          android:id="@+id/android:list"
          android:layout_width="fill_parent"
          android:layout_height="500dp"
-         android:layout_alignRight="@+id/button2"
          android:layout_below="@+id/comment"
-         android:layout_weight="1"
          android:scrollbars="vertical" >
 
      </ListView>
@@ -33,10 +21,30 @@
          android:id="@+id/favorite"
          android:layout_width="140dp"
          android:layout_height="wrap_content"
-         android:layout_alignBaseline="@+id/comment"
-         android:layout_alignBottom="@+id/comment"
-         android:layout_toLeftOf="@+id/comment"
-         android:text="Favorites"
-         android:onClick="viewFavorites" />
+         android:layout_toLeftOf="@+id/button1"
+         android:layout_toRightOf="@+id/comment"
+         android:onClick="viewFavorites"
+         android:textSize="12sp"
+         android:text="@string/favButton" />
+
+     <Button
+         android:id="@+id/button1"
+         android:layout_width="wrap_content"
+         android:layout_height="wrap_content"
+         android:layout_alignBaseline="@+id/favorite"
+         android:layout_alignBottom="@+id/favorite"
+         android:layout_alignRight="@+id/android:list"
+         android:textSize="12sp"
+         android:text="@string/sortButton" />
+
+     <Button
+         android:id="@+id/comment"
+         android:layout_width="140dp"
+         android:layout_height="wrap_content"
+         android:layout_alignBaseline="@+id/favorite"
+         android:layout_alignBottom="@+id/favorite"
+         android:layout_alignLeft="@+id/android:list"
+         android:onClick="popUp"
+         android:text="@string/commentButton" />
 
 </RelativeLayout>

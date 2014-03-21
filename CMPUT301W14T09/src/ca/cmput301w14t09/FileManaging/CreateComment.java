@@ -44,20 +44,19 @@ public class CreateComment {
 	 * @param authorname
 	 * @param commentText
 	 * @param topComment
-	 * @param attachment
+	 * @param hasPicture
 	 * @param picture
 	 * @return
 	 */
 	
-	public static Comment newComment(LocationController lc, String authorname, String commentText, Boolean topComment, Bitmap picture) {
+	public static Comment newComment(LocationController lc, String authorname, String commentText, Boolean topComment, Bitmap picture, Boolean hasPicture) {
 		Comment comment = new Comment();
-	//	PictureController pictureController = new PictureController();
 		
 		comment.setAuthorName(authorname);
 		comment.setCommentText(commentText);
 		
-		
 		comment.setPicture(picture);
+		comment.setHasPicture(hasPicture);
 		
 		GeoLocation geo = lc.getGeoLocation();
 		comment.setGeoLocation(geo);

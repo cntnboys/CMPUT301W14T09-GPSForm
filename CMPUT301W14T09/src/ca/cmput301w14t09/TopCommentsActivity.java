@@ -87,6 +87,7 @@ public class TopCommentsActivity extends ListActivity {
 	ImageButton addPicImageButton;
 	ImageView picImagePreview;
 	Bitmap picture = null;
+	Boolean attachment;
 
 	PictureModelList pictureModel;
 
@@ -273,7 +274,8 @@ public class TopCommentsActivity extends ListActivity {
 				FileSaving.saveUserFile(user, topActivity);
 
 				picture = pictureController.finalizePicture(picture);
-				comment = CreateComment.newComment(lc, text2, text1, true, picture);
+				attachment = pictureController.returnHasAttachment();
+				comment = CreateComment.newComment(lc, text2, text1, true, picture, attachment);
 
 				try
 				{

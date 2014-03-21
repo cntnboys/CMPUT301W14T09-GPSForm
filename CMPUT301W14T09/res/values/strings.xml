@@ -13,7 +13,9 @@
     <string name="attachment_description">Attachment pic is shown if comment has attachment</string>
 
     <string name="Favorite">favButton</string>
-    <string name="favButton">Favorite</string>
+    <string name="favButton">Favorites</string>
+    <string name="sortButton">Sort Pics</string>
+    <string name="commentButton">Comment</string>
 
 
 </resources>
