@@ -43,8 +43,8 @@ import ca.cmput301w14t09.Model.GeoLocation;
 public class LocationController {
 
     private GeoLocation geo = new GeoLocation();
-    private double lat;
-    private double lng;
+    private Double lat;
+    private Double lng;
     LocationManager lm = null;
     int count = 0;
 
@@ -101,25 +101,22 @@ public class LocationController {
     */
     
     public void locationchanged(android.location.Location location, EditText tv2, EditText tv3){
-        if(location != null){
-        	
-            if(count<2){
+        if(location != null && lat != null && lng != null){
+        
             	
                 lat = location.getLatitude();
                 lng = location.getLongitude();
-
-                Date date = new Date(location.getTime());
+                
+                System.out.println(lat);
+                System.out.println(lng);
                 
                 //set GUI textviews
-                tv2.setText(""+lng);
-                tv3.setText(""+lat);
+                //tv2.setText(""+lng);
+                //tv3.setText(""+lat);
                 
                 //set geolocation to current location
                 setGeoLocation();
-                
-                //count to stop from retreiving location
-                count = count + 1;
-            }
+       
         }
 
     }
@@ -135,7 +132,7 @@ public class LocationController {
     	
         // Fix for passing in blank parameters.
         if(latitude.isEmpty() == true) { 
-            lat = 1;
+            lat = (double) 1;
         }
         
         else {
@@ -143,7 +140,7 @@ public class LocationController {
         }
         
         if(longitude.isEmpty() == true) {
-            lng = 1;
+            lng = (double) 1;
         }
         else {
             lng = Double.parseDouble(longitude);
