@@ -50,6 +50,13 @@
             android:text="Cancel" />
     </LinearLayout>
 
+    <EditText
+        android:id="@+id/editText1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:text="Change your comment location" />
+
     <ImageView
         android:id="@+id/picImagePreview"
         android:layout_width="78dp"
@@ -58,11 +65,10 @@
          
         android:contentDescription="NewString2"/>
 
-    <Button
-        android:id="@+id/changebutton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="81dp"
-        android:text="Update Location" />
+    <ListView
+        android:id="@+id/list22"
+        android:layout_width="match_parent"
+        android:layout_height="276dp" >
+    </ListView>
 
 </LinearLayout>

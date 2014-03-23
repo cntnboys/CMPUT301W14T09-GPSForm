@@ -19,6 +19,7 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 package ca.cmput301w14t09;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import android.annotation.SuppressLint;
 import android.app.Dialog;
@@ -38,6 +39,7 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
@@ -45,10 +47,12 @@ import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.Toast;
 import ca.cmput301w14t09.Controller.LocationController;
+import ca.cmput301w14t09.Controller.LocationFactory;
 import ca.cmput301w14t09.Controller.PictureController;
 import ca.cmput301w14t09.FileManaging.CreateComment;
 import ca.cmput301w14t09.FileManaging.FileSaving;
 import ca.cmput301w14t09.Model.Comment;
+import ca.cmput301w14t09.Model.GeoLocation;
 import ca.cmput301w14t09.Model.PictureModelList;
 import ca.cmput301w14t09.Model.ThreadAdapter;
 import ca.cmput301w14t09.Model.User;
@@ -96,6 +100,9 @@ public class TopCommentsActivity extends ListActivity {
 	EditText authorText;
 	EditText commentText;
 	ThreadAdapter adapter;
+	
+	List<GeoLocation> objList = new ArrayList<GeoLocation>();
+	List<String> Locationstring = new ArrayList<String>();
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -117,6 +124,11 @@ public class TopCommentsActivity extends ListActivity {
 			}
 
 		});
+		
+		LocationFactory lf = new LocationFactory();
+		lf.buildlocations();
+		objList = lf.getObjList();
+		
 	}
 
 	@Override
@@ -170,11 +182,22 @@ public class TopCommentsActivity extends ListActivity {
 
 		authorText=(EditText)dialog.findViewById(R.id.authorText);
 		commentText=(EditText)dialog.findViewById(R.id.commentText);
+		ListView LocationList = (ListView)dialog.findViewById(R.id.list22);
+		
 		final EditText tv2 = (EditText)dialog.findViewById(R.id.longtext3);
 		final EditText tv3 = (EditText)dialog.findViewById(R.id.lattext3);
 
 		//new Location Controller 
 		final LocationController lc = new LocationController();
+		
+		lc.getnameslocation(objList);
+		Locationstring =lc.getLocationstringlist();
+		
+		final ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,
+				R.layout.list_view, Locationstring);
+		LocationList.setAdapter(adapter);
+		
+		
 		this.pictureController = new PictureController(this);
 
 		//https://github.com/baoliangwang/CurrentLocation
@@ -245,18 +268,17 @@ public class TopCommentsActivity extends ListActivity {
 
 
 		//update location button
-		btnSetLocation.setOnClickListener(new View.OnClickListener() {
+		//btnSetLocation.setOnClickListener(new View.OnClickListener() {
 
-			@Override
-			public void onClick(View v) { 
-				String latString;
-				String lngString;
+			//@Override
+			//public void onClick(View v) { 
+				
 
-				lc.updatelocation(dialog.getContext(), tv2.getText().toString(), tv3.getText().toString());
+				//lc.updatelocation(dialog.getContext(), objList);
 
 
-			}
-		});
+			//}
+		//});
 
 		//cancel button
 		btnCancel.setOnClickListener(new View.OnClickListener() {

@@ -20,13 +20,16 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 package ca.cmput301w14t09.Controller;
 
 import java.util.ArrayList;
-import java.util.Date;
-import android.annotation.SuppressLint;
+import java.util.List;
+
+import android.app.Dialog;
 import android.content.Context;
 import android.location.LocationListener;
 import android.location.LocationManager;
+import android.widget.ArrayAdapter;
 import android.widget.EditText;
-import android.widget.Toast;
+import android.widget.ListView;
+import ca.cmput301w14t09.R;
 import ca.cmput301w14t09.Model.GeoLocation;
 
 /**
@@ -42,11 +45,18 @@ import ca.cmput301w14t09.Model.GeoLocation;
 
 public class LocationController {
 
-    private GeoLocation geo = new GeoLocation();
-    private Double lat;
-    private Double lng;
+    private static final List<GeoLocation> LocationName = null;
+	private static final List<GeoLocation> LocationList = null;
+	private GeoLocation geo = new GeoLocation();
+    private double lat = 0;
+    private double lng = 0;
     LocationManager lm = null;
     int count = 0;
+    protected Dialog dialog;
+    List<GeoLocation> objList2 = new ArrayList<GeoLocation>();
+    List<String> Locationstring = new ArrayList<String>();
+ 
+ 
 
     public GeoLocation getGeoLocation() {
         return geo;
@@ -101,7 +111,7 @@ public class LocationController {
     */
     
     public void locationchanged(android.location.Location location, EditText tv2, EditText tv3){
-        if(location != null && lat != null && lng != null){
+        if(location != null && lat == 0 && lng == 0){
         
             	
                 lat = location.getLatitude();
@@ -109,10 +119,6 @@ public class LocationController {
                 
                 System.out.println(lat);
                 System.out.println(lng);
-                
-                //set GUI textviews
-                //tv2.setText(""+lng);
-                //tv3.setText(""+lat);
                 
                 //set geolocation to current location
                 setGeoLocation();
@@ -127,34 +133,45 @@ public class LocationController {
     * @param LocationController
     */
 
-    @SuppressLint("NewApi")
-	public void updatelocation(Context context, String longitude, String latitude) {  
-    	
-        // Fix for passing in blank parameters.
-        if(latitude.isEmpty() == true) { 
-            lat = (double) 1;
-        }
-        
-        else {
-            lat = Double.parseDouble(latitude);
-        }
-        
-        if(longitude.isEmpty() == true) {
-            lng = (double) 1;
-        }
-        else {
-            lng = Double.parseDouble(longitude);
-        }
-        
-        //sets geolocation to new given one
-        setGeoLocation();
+ 
+	public void getnameslocation(List<GeoLocation> objList ) {  
+		
+		objList2 = objList;
+		
+		//dialog = new Dialog(context);
+		//UserList = (ListView)findViewById(R.id.UserList);
+		//dialog.setContentView(R.layout.change_location_pop);
+		//dialog.setTitle("Select Location");
+		
+		//dialog.show();
+		
+		//loop through list of Counter Objects and add to listview for display name and count
+	     for(int i=0;i<objList2.size();i++){
+	            	
+	         GeoLocation cam2 = objList2.get(i);
+	         String nameofcount = cam2.getName();
+	         System.out.println(nameofcount);
+	         Locationstring.add(nameofcount);  
+	       
+	    
+	     }
 
         //toast message displayed on successful update
-        String update ="Your location has been updated";
+        //String update ="Your location has been updated";
         
         // When clicked, show a toast with the TextView text Game, Help, Home
-        Toast.makeText(context, update, Toast.LENGTH_SHORT).show();  
-
+       // Toast.makeText(context, update, Toast.LENGTH_SHORT).show();  
+        
     }
+
+	public List<String> getLocationstringlist() {
+		return Locationstring;
+	}
+
+	public void setLocationstringlist(List<String> locationstring) {
+		Locationstring = locationstring;
+	}
+	
+	
 }
 
