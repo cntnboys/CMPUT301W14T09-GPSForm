@@ -26,10 +26,7 @@ import android.app.Dialog;
 import android.content.Context;
 import android.location.LocationListener;
 import android.location.LocationManager;
-import android.widget.ArrayAdapter;
-import android.widget.EditText;
-import android.widget.ListView;
-import ca.cmput301w14t09.R;
+import android.widget.Toast;
 import ca.cmput301w14t09.Model.GeoLocation;
 
 /**
@@ -44,9 +41,7 @@ import ca.cmput301w14t09.Model.GeoLocation;
  */
 
 public class LocationController {
-
-    private static final List<GeoLocation> LocationName = null;
-	private static final List<GeoLocation> LocationList = null;
+	
 	private GeoLocation geo = new GeoLocation();
     private double lat = 0;
     private double lng = 0;
@@ -110,7 +105,7 @@ public class LocationController {
    	* @param LocationController
     */
     
-    public void locationchanged(android.location.Location location, EditText tv2, EditText tv3){
+    public void locationchanged(android.location.Location location){
         if(location != null && lat == 0 && lng == 0){
         
             	
@@ -122,7 +117,7 @@ public class LocationController {
                 
                 //set geolocation to current location
                 setGeoLocation();
-       
+      
         }
 
     }
@@ -133,17 +128,9 @@ public class LocationController {
     * @param LocationController
     */
 
- 
 	public void getnameslocation(List<GeoLocation> objList ) {  
 		
 		objList2 = objList;
-		
-		//dialog = new Dialog(context);
-		//UserList = (ListView)findViewById(R.id.UserList);
-		//dialog.setContentView(R.layout.change_location_pop);
-		//dialog.setTitle("Select Location");
-		
-		//dialog.show();
 		
 		//loop through list of Counter Objects and add to listview for display name and count
 	     for(int i=0;i<objList2.size();i++){
@@ -155,14 +142,33 @@ public class LocationController {
 	       
 	    
 	     }
-
-        //toast message displayed on successful update
-        //String update ="Your location has been updated";
-        
-        // When clicked, show a toast with the TextView text Game, Help, Home
-       // Toast.makeText(context, update, Toast.LENGTH_SHORT).show();  
         
     }
+	
+	public void updatelocation(String locationname, Context context){
+		
+		//loop through list of Counter Objects and add to listview for display name and count
+	     for(int i=0;i<objList2.size();i++){
+	            	
+	         GeoLocation cam2 = objList2.get(i);
+	         String nameofcount = cam2.getName();
+	         
+	         if(nameofcount == locationname){
+	        	 
+	        	 lat = cam2.getLatitude();
+	        	 lng = cam2.getLongitude();
+	        	 //toast message displayed on successful update
+	             String update ="Your location has been updated"+":"+ nameofcount;
+	             
+	             // When clicked, show a toast with the TextView text Game, Help, Home
+	            Toast.makeText(context, update, Toast.LENGTH_SHORT).show();
+	            setGeoLocation();
+	        	 
+	         }
+	         
+	     }
+		
+	}
 
 	public List<String> getLocationstringlist() {
 		return Locationstring;

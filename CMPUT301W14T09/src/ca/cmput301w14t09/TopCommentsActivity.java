@@ -28,7 +28,6 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.location.LocationListener;
 import android.location.LocationManager;
 import android.net.Uri;
@@ -45,6 +44,7 @@ import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.ListView;
+import android.widget.TextView;
 import android.widget.Toast;
 import ca.cmput301w14t09.Controller.LocationController;
 import ca.cmput301w14t09.Controller.LocationFactory;
@@ -182,10 +182,9 @@ public class TopCommentsActivity extends ListActivity {
 
 		authorText=(EditText)dialog.findViewById(R.id.authorText);
 		commentText=(EditText)dialog.findViewById(R.id.commentText);
-		ListView LocationList = (ListView)dialog.findViewById(R.id.list22);
+		final ListView LocationList = (ListView)dialog.findViewById(R.id.list22);
 		
-		final EditText tv2 = (EditText)dialog.findViewById(R.id.longtext3);
-		final EditText tv3 = (EditText)dialog.findViewById(R.id.lattext3);
+		
 
 		//new Location Controller 
 		final LocationController lc = new LocationController();
@@ -208,8 +207,6 @@ public class TopCommentsActivity extends ListActivity {
 		Button save=(Button)dialog.findViewById(R.id.save);
 		Button btnCancel=(Button)dialog.findViewById(R.id.cancel);
 
-		//update location button
-		Button btnSetLocation = (Button)dialog.findViewById(R.id.changebutton);
 
 		picImagePreview = (ImageView)dialog.findViewById(R.id.picImagePreview);  
 		addPicImageButton = (ImageButton) dialog.findViewById(R.id.takePicture);
@@ -229,8 +226,7 @@ public class TopCommentsActivity extends ListActivity {
 
 		// Checks camera availability
 		if (!isDeviceSupportCamera()) {
-			Toast.makeText(getApplicationContext(),
-					"No Camera Detected.", Toast.LENGTH_LONG).show();
+			Toast.makeText(getApplicationContext(),"No Camera Detected.", Toast.LENGTH_LONG).show();
 		}
 
 		// Retrieve location updates through LocationListener interface
@@ -254,32 +250,35 @@ public class TopCommentsActivity extends ListActivity {
 			@Override
 			public void onLocationChanged(android.location.Location location) {
 
-				lc.locationchanged(location, tv2, tv3);
-
+				lc.locationchanged(location);
 
 			}
 		};
+		
+		//http://android.okhelp.cz/start-activity-from-listview-item-click-android-example/
+		 //list view item click 
+	     LocationList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+	    	 public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+	    		 
+	               // When clicked, show a toast with the TextView text Game, Help, Home
+	              // Toast.makeText(getApplicationContext(), ((TextView) view).getText(), Toast.LENGTH_SHORT).show();  
+	              
+	               //http://stackoverflow.com/questions/801193/modify-view-static-variables-while-debugging-in-eclipse
+	               String selectedFromList =(String) (LocationList.getItemAtPosition(position));
+	               
+	               lc.updatelocation(selectedFromList, dialog.getContext());
+	               
+	               
+	    	 }
+
+	     });
 
 		dialog.show();
 
 		//request location update
 		//https://github.com/baoliangwang/CurrentLocation
 		lm.requestLocationUpdates(LocationManager.GPS_PROVIDER, 1000, 0, locationListener);
-
-
-		//update location button
-		//btnSetLocation.setOnClickListener(new View.OnClickListener() {
-
-			//@Override
-			//public void onClick(View v) { 
-				
-
-				//lc.updatelocation(dialog.getContext(), objList);
-
-
-			//}
-		//});
-
+		
 		//cancel button
 		btnCancel.setOnClickListener(new View.OnClickListener() {
 
