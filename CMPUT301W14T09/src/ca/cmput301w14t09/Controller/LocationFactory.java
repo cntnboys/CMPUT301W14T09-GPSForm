@@ -17,6 +17,31 @@ public class LocationFactory {
 		geo.setLongitude(-113.52893);
 		objList.add(geo);
 		
+		GeoLocation geo1 = new GeoLocation();
+		geo1.setName("Quad");
+		geo1.setLatitude(53.52653);
+		geo1.setLongitude(-113.52557);
+		objList.add(geo1);
+		
+		GeoLocation geo11 = new GeoLocation();
+		geo11.setName("CAB");
+		geo11.setLatitude(53.52659);
+		geo11.setLongitude(-113.52469);
+		objList.add(geo11);
+		
+		GeoLocation geo111 = new GeoLocation();
+		geo111.setName("SUB");
+		geo111.setLatitude(53.52537);
+		geo111.setLongitude(-113.52731);
+		objList.add(geo111);
+		
+		GeoLocation geo1111 = new GeoLocation();
+		geo1111.setName("CSC");
+		geo1111.setLatitude(53.52678 );
+		geo1111.setLongitude(-113.52715);
+		objList.add(geo1111);
+		
+		
 	}
 
 	public List<GeoLocation> getObjList() {
