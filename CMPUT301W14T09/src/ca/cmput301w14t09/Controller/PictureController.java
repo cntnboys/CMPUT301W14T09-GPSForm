@@ -19,6 +19,9 @@ package ca.cmput301w14t09.Controller;
 
 import java.io.File;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.Date;
 import java.util.Locale;
 
@@ -161,5 +164,20 @@ public class PictureController extends Activity{
     	return hasAttachment;
     }
 
-
+    /**
+     * Returns a sorted comment list based on if a comment has a picture or not
+     */
+ /**   public ArrayList<Comment> pictureSortedList(ArrayList<Comment> commentList){
+    	
+		
+		Collections.sort(commentList, new Comparator<Comment>() {
+			  public int compare(Comment o1, Comment o2) {
+			      if ( o1.getHasPicture() == null || o2.getHasPicture() == null)
+			        return 0;
+			      return o1.getHasPicture().compareTo(o2.getHasPicture());
+			  }
+			});
+	//	Collections.reverse(commentList);
+		  return commentList;
+    } **/
 }

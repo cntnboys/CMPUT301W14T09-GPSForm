@@ -42,9 +42,8 @@
          android:id="@+id/comment"
          android:layout_width="140dp"
          android:layout_height="wrap_content"
-         android:layout_alignBaseline="@+id/favorite"
-         android:layout_alignBottom="@+id/favorite"
          android:layout_alignLeft="@+id/android:list"
+         android:layout_alignTop="@+id/favorite"
          android:onClick="popUp"
          android:text="@string/commentButton" />
 

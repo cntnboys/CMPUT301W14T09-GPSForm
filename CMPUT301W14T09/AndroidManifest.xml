@@ -51,6 +51,11 @@
             android:label="title_activity_picture"
             android:screenOrientation="portrait">
         </activity>
+        <activity
+            android:name="ca.cmput301w14t09.UserProfileActivity"
+            android:label="@string/title_activity_user_profile"
+            android:screenOrientation="portrait">
+        </activity>
     </application>
 
 </manifest>

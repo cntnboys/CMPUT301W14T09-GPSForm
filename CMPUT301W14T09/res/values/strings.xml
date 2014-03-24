@@ -7,6 +7,7 @@
     <string name="title_activity_top_comments">TopCommentsActivity</string>
     <string name="title_activity_favorites">FavoritesActivity</string>
     <string name="title_activity_comment_list">CommentListActivity</string>
+    <string name="title_activity_user_profile">UserProfileActivity</string>
 
     <string name="camera_button_description">Camera Button to take pictures</string>
     <string name="image_view_description">A privew of the taken picture will appear here</string>
@@ -16,6 +17,15 @@
     <string name="favButton">Favorites</string>
     <string name="sortButton">Sort Pics</string>
     <string name="commentButton">Comment</string>
+    <string name="button_save">Save</string>
+    
+    
+    <string name="hint_username">Firstname, Lastname</string>
+    <string name="textview_username">Username</string>
+    <string name="imageView_username">Picture of User</string>
+    <string name="editText_email">Email: </string>
+    <string name="editText_biography">Biography: </string>
+    <string name="editText_phone">Phone: </string>
 
 
 </resources>

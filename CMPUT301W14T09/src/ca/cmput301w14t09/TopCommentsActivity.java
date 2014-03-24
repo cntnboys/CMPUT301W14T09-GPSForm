@@ -430,18 +430,19 @@ public class TopCommentsActivity extends ListActivity {
 		ArrayList<Comment> commentList = null;
 		try {
 			commentList = ElasticSearchOperations.pullThreads();
+		//	commentList = this.pictureController.pictureSortedList(commentList);
 		} catch (InterruptedException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		
+
 		Collections.sort(commentList, new Comparator<Comment>() {
 			  public int compare(Comment o1, Comment o2) {
 			      if ( o1.getHasPicture() == null || o2.getHasPicture() == null)
 			        return 0;
 			      return o1.getHasPicture().compareTo(o2.getHasPicture());
 			  }
-			});
+			}); 
 		Collections.reverse(commentList);
 		
 		adapter = new ThreadAdapter(this,

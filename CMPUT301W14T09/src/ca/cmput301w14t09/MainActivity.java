@@ -21,7 +21,10 @@ package ca.cmput301w14t09;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.ContextMenu;
+import android.view.ContextMenu.ContextMenuInfo;
 import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
@@ -67,7 +70,12 @@ public class MainActivity extends Activity {
 				topComments(user);
 			}
 
-		});
+		}); 
+		
+		registerForContextMenu(UserList);
+		
+		
+		
 	}
 
 	@Override
@@ -77,6 +85,26 @@ public class MainActivity extends Activity {
 		return true;
 	}
 
+	@Override
+	public void onCreateContextMenu(ContextMenu menu, View v, ContextMenuInfo menuInfo){
+		
+		super.onCreateContextMenu(menu, v, menuInfo);
+			menu.setHeaderTitle("Select Action:");
+			menu.add(0,v.getId(),0, "Create User Profile");
+	}
+	
+	@Override
+	public boolean onContextItemSelected(MenuItem item){
+		AdapterView.AdapterContextMenuInfo info = (AdapterView.AdapterContextMenuInfo)item.getMenuInfo();
+		if(item.getTitle() == "Create User Profile"){
+			Intent intent = new Intent(this, UserProfileActivity.class);
+			intent.putExtra("CURRENT_USER", user);
+			startActivity(intent);
+		}
+		return false;
+		
+		
+	}
 	/**
 	 * onStart populates the listview with clickable usernames
 	 * that have already been created on the device
