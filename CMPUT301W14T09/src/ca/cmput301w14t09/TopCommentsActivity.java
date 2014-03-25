@@ -22,7 +22,9 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 
+import android.app.Activity;
 import android.annotation.SuppressLint;
+import android.app.ActionBar;
 import android.app.Dialog;
 import android.app.ListActivity;
 import android.content.Context;
@@ -36,6 +38,7 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
 import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.AdapterView;
@@ -84,6 +87,7 @@ public class TopCommentsActivity extends ListActivity {
 	protected User user;
 	protected Dialog dialog;
 	protected ListView aCommentList;
+	protected MenuItem menuItem;
 	Comment comment;
 
 	ImageButton addPicImageButton;
@@ -101,6 +105,7 @@ public class TopCommentsActivity extends ListActivity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_top_comments);
+		
 		topActivity = this;
 
 		aCommentList = (ListView) findViewById(android.R.id.list);
@@ -130,6 +135,28 @@ public class TopCommentsActivity extends ListActivity {
 
 	}
 
+	@Override
+	public boolean onOptionsItemSelected(MenuItem item){
+		switch(item.getItemId()){
+		case R.id.menu_refresh:
+			refreshComments();
+			Toast.makeText(this, "Comments Refreshed.", Toast.LENGTH_SHORT)
+			.show();
+			return true;
+			
+		case R.id.menu_sort_pictures:
+			sortPictures();
+			Toast.makeText(this, "Sorted by Pictures.", Toast.LENGTH_SHORT)
+			.show();
+			return true;
+
+		default:
+			return super.onOptionsItemSelected(item);
+		}
+
+	}
+
+	
 	/**
 	 * onStart populates the listview with results from
 	 * elasticSearch, finding all of the top comments
@@ -425,7 +452,7 @@ public class TopCommentsActivity extends ListActivity {
 
 	}
 
-	public void sortPictures(View v){
+	public void sortPictures(){
 		
 		ArrayList<Comment> commentList = null;
 		try {
@@ -443,6 +470,26 @@ public class TopCommentsActivity extends ListActivity {
 			      return o1.getHasPicture().compareTo(o2.getHasPicture());
 			  }
 			}); 
+		Collections.reverse(commentList);
+		
+		adapter = new ThreadAdapter(this,
+				R.layout.thread_view, commentList);
+		aCommentList.setAdapter(adapter);
+		adapter.notifyDataSetChanged();
+	}
+	
+	public void refreshComments(){
+		
+		ArrayList<Comment> commentList = null;
+		try {
+			commentList = ElasticSearchOperations.pullThreads();
+		//	commentList = this.pictureController.pictureSortedList(commentList);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+		Collections.sort(commentList);
 		Collections.reverse(commentList);
 		
 		adapter = new ThreadAdapter(this,

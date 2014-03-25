@@ -95,13 +95,14 @@ public class MainActivity extends Activity {
 	
 	@Override
 	public boolean onContextItemSelected(MenuItem item){
-		AdapterView.AdapterContextMenuInfo info = (AdapterView.AdapterContextMenuInfo)item.getMenuInfo();
+	//	AdapterView.AdapterContextMenuInfo info = (AdapterView.AdapterContextMenuInfo)item.getMenuInfo();
 		if(item.getTitle() == "Create User Profile"){
 			Intent intent = new Intent(this, UserProfileActivity.class);
 			intent.putExtra("CURRENT_USER", user);
+			
 			startActivity(intent);
 		}
-		return false;
+		return super.onContextItemSelected(item);
 		
 		
 	}

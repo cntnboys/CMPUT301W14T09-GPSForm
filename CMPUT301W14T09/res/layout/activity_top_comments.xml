@@ -21,22 +21,10 @@
          android:id="@+id/favorite"
          android:layout_width="140dp"
          android:layout_height="wrap_content"
-         android:layout_toLeftOf="@+id/button1"
+         android:layout_alignRight="@+id/android:list"
          android:layout_toRightOf="@+id/comment"
          android:onClick="viewFavorites"
-         android:textSize="12sp"
-         android:text="@string/favButton" />
-
-     <Button
-         android:id="@+id/button1"
-         android:layout_width="wrap_content"
-         android:layout_height="wrap_content"
-         android:layout_alignBaseline="@+id/favorite"
-         android:layout_alignBottom="@+id/favorite"
-         android:layout_alignRight="@+id/android:list"
-         android:textSize="12sp"
-         android:text="@string/sortButton" 
-         android:onClick="sortPictures"/>
+         android:text="@string/favButton"/>
 
      <Button
          android:id="@+id/comment"
