@@ -23,6 +23,9 @@ public class UserProfileActivity extends Activity{
 	User user;
 	Intent intent;
 	
+	TopCommentsActivity topCommentsActivity;
+	UserProfileActivity userProfileActivity;;
+	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -36,6 +39,7 @@ public class UserProfileActivity extends Activity{
 		usernameText = (TextView) findViewById(R.id.textViewUsername);
 		userProfilePicture = (ImageView) findViewById(R.id.imageViewUsername);
 
+		userProfileActivity = this;
 		//Log.e("HERE!!!!", user.getProfile().getAuthorName().toString());
 		//usernameText.setText(user.getProfile().getAuthorName());
 		//changeUsernameText();
@@ -49,8 +53,9 @@ public class UserProfileActivity extends Activity{
 		intent = getIntent();
 		user = (User) intent.getSerializableExtra("CURRENT_USER");	
 		
-		Log.e("HERE!!!!", user.getProfile().getAuthorName().toString());
-
+	//	Log.e("HERE!!!!", user.getProfile().getAuthorName().toString());
+		usernameText.setText(user.getProfile().getAuthorName());
+		
 		return true;
 
 	}

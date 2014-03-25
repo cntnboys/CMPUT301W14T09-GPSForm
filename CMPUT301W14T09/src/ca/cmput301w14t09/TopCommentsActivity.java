@@ -425,7 +425,6 @@ public class TopCommentsActivity extends ListActivity {
 				@Override
 				public void onClick(View v) {
 					dialog.dismiss();
-
 				}
 			});
 		}

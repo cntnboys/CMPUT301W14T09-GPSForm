@@ -19,16 +19,22 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 package ca.cmput301w14t09;
 
 import android.app.Activity;
+import android.app.Dialog;
 import android.content.Intent;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.view.ContextMenu;
 import android.view.ContextMenu.ContextMenuInfo;
+import android.view.Gravity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.Window;
+import android.view.WindowManager;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
 import ca.cmput301w14t09.FileManaging.FileLoading;
@@ -63,11 +69,12 @@ public class MainActivity extends Activity {
 
 			public void onItemClick(AdapterView<?> arg0, View arg1, int arg2,
 					long arg3) {
-
+				
 				String getUser = (String) (UserList.getItemAtPosition(arg2));
 				user = new User();
 				user = loadUser(getUser);
-				topComments(user);
+				showCustomDialog(arg2);
+			//	topComments(user);  
 			}
 
 		}); 
@@ -78,6 +85,49 @@ public class MainActivity extends Activity {
 		
 	}
 
+	/**
+	 * http://www.codeproject.com/Tips/659766/Android-Custom-DialogBox
+	 * @param key
+	 */
+	protected void showCustomDialog(int key){
+		final Dialog dialog = new Dialog(MainActivity.this);
+		dialog.setTitle(user.getUserName().toString());
+        dialog.setContentView(R.layout.options_dialog);
+        dialog.getWindow().setBackgroundDrawable(new ColorDrawable(android.graphics.Color.TRANSPARENT));
+        
+        Window window = dialog.getWindow();
+        WindowManager.LayoutParams wlp = window.getAttributes();
+        
+        wlp.gravity = Gravity.TOP;
+        window.setAttributes(wlp);
+        dialog.show();
+        
+        Button dialogCommentsButton = (Button)dialog.findViewById(R.id.dialogCommentsButton);
+        Button dialogProfileButton = (Button)dialog.findViewById(R.id.dialogProfileButton);
+        
+        dialogCommentsButton.setOnClickListener(new View.OnClickListener() {
+
+			@Override
+			public void onClick(View arg0) {
+				topComments(user);
+		        dialog.dismiss();
+			}
+        	
+        });
+
+        dialogProfileButton.setOnClickListener(new View.OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {
+				Intent intent = new Intent(v.getContext(), UserProfileActivity.class);
+				intent.putExtra("CURRENT_USER", user);
+				
+				startActivity(intent);
+				
+			}
+		});
+	}
+	
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
 		// Inflate the menu; this adds items to the action bar if it is present.
@@ -93,7 +143,7 @@ public class MainActivity extends Activity {
 			menu.add(0,v.getId(),0, "Create User Profile");
 	}
 	
-	@Override
+/**	@Override
 	public boolean onContextItemSelected(MenuItem item){
 	//	AdapterView.AdapterContextMenuInfo info = (AdapterView.AdapterContextMenuInfo)item.getMenuInfo();
 		if(item.getTitle() == "Create User Profile"){
@@ -105,7 +155,7 @@ public class MainActivity extends Activity {
 		return super.onContextItemSelected(item);
 		
 		
-	}
+	} **/
 	/**
 	 * onStart populates the listview with clickable usernames
 	 * that have already been created on the device
