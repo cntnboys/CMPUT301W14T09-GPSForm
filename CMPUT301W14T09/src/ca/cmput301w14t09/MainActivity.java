@@ -98,7 +98,7 @@ public class MainActivity extends Activity {
         Window window = dialog.getWindow();
         WindowManager.LayoutParams wlp = window.getAttributes();
         
-        wlp.gravity = Gravity.TOP;
+     //   wlp.gravity = Gravity.TOP | Gravity.LEFT;
         window.setAttributes(wlp);
         dialog.show();
         
@@ -123,6 +123,7 @@ public class MainActivity extends Activity {
 				intent.putExtra("CURRENT_USER", user);
 				
 				startActivity(intent);
+				dialog.dismiss();
 				
 			}
 		});
