@@ -19,6 +19,11 @@
         android:hint="@string/hint_username"
         android:inputType="textPersonName" />
 
+    <Spinner
+        android:id="@+id/spinnerSex"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
     <ImageView
         android:id="@+id/imageViewUsername"
         android:layout_width="match_parent"

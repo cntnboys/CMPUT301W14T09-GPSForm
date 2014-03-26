@@ -53,6 +53,11 @@ public class ElasticSearchOperations {
 
     private static String serverName = "ElasticSearch";
     private static String postAddress = "http://cmput301.softwareprocess.es:8080/cmput301w14t09/test101/";
+    
+    /**
+     * Userprofile string address
+     */
+    private static String postAddressUP = "http://cmput301.softwareprocess.es:8080/cmput301w14t09/userprofile/test101/";
     private static String searchAddress = "http://cmput301.softwareprocess.es:8080/cmput301w14t09/test101/_search?pretty=1";
 
     private static Gson GSON = null;
@@ -79,8 +84,6 @@ public class ElasticSearchOperations {
                 HttpPost request = new HttpPost(postAddress);
 
                 try { 
-                  //  String jsonString = gson.toJson(commentThread);
-                 //   System.out.println("JSON String:" +jsonString);
 
                     request.setEntity(new StringEntity(GSON.toJson(commentThread)));
 

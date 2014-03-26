@@ -1,14 +1,18 @@
 package ca.cmput301w14t09;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import ca.cmput301w14t09.Model.User;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.Menu;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.Spinner;
 import android.widget.TextView;
 
 public class UserProfileActivity extends Activity{
@@ -20,11 +24,10 @@ public class UserProfileActivity extends Activity{
 	protected Button saveButton;
 	protected ImageView userProfilePicture;
 	protected TextView usernameText;
+	protected Spinner maleOrFemale;
 	User user;
 	Intent intent;
-	
-	TopCommentsActivity topCommentsActivity;
-	UserProfileActivity userProfileActivity;;
+
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -38,11 +41,9 @@ public class UserProfileActivity extends Activity{
 		saveButton = (Button) findViewById(R.id.buttonSave);
 		usernameText = (TextView) findViewById(R.id.textViewUsername);
 		userProfilePicture = (ImageView) findViewById(R.id.imageViewUsername);
-
-		userProfileActivity = this;
-		//Log.e("HERE!!!!", user.getProfile().getAuthorName().toString());
-		//usernameText.setText(user.getProfile().getAuthorName());
-		//changeUsernameText();
+		maleOrFemale = (Spinner) findViewById(R.id.spinnerSex);
+		
+		maleFemaleSpinner();
 	}
 	
 	@Override
@@ -55,14 +56,20 @@ public class UserProfileActivity extends Activity{
 		
 	//	Log.e("HERE!!!!", user.getProfile().getAuthorName().toString());
 		usernameText.setText(user.getProfile().getAuthorName());
-		
 		return true;
 
 	}
 	
-	public void changeUsernameText(){
-		usernameText.setText(user.getProfile().getAuthorName());
-		
+	/**
+	 * This simple method populates the male/female spinner.
+	 */
+	public void maleFemaleSpinner(){
+		List<String> list = new ArrayList<String>();
+		list.add("Male");
+		list.add("Female");
+		ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, list);
+		adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+		maleOrFemale.setAdapter(adapter);
 	}
 	
 
