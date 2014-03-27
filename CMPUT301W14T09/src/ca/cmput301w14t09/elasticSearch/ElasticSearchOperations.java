@@ -35,6 +35,7 @@ import org.apache.http.impl.client.DefaultHttpClient;
 import android.graphics.Bitmap;
 import android.util.Log;
 import ca.cmput301w14t09.Model.Comment;
+import ca.cmput301w14t09.Model.UserProfileModel;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
@@ -57,7 +58,7 @@ public class ElasticSearchOperations {
     /**
      * Userprofile string address
      */
-    private static String postAddressUP = "http://cmput301.softwareprocess.es:8080/cmput301w14t09/userprofile/test101/";
+    private static String postAddressUuserProfile = "http://cmput301.softwareprocess.es:8080/cmput301w14t09/userprofile/test101/";
     private static String searchAddress = "http://cmput301.softwareprocess.es:8080/cmput301w14t09/test101/_search?pretty=1";
 
     private static Gson GSON = null;
@@ -298,4 +299,10 @@ public class ElasticSearchOperations {
         return comment;
     }
 
+    public static void pushUserProfile(final UserProfileModel uPModel){
+		if (GSON == null)
+			constructGson();
+		
+		
+    }
 }
