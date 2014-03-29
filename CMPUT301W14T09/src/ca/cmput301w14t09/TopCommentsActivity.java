@@ -34,6 +34,7 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
 import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.AdapterView;
@@ -49,6 +50,7 @@ import android.widget.Toast;
 import ca.cmput301w14t09.Controller.LocationController;
 import ca.cmput301w14t09.Controller.LocationFactory;
 import ca.cmput301w14t09.Controller.PictureController;
+import ca.cmput301w14t09.Controller.SortingController;
 import ca.cmput301w14t09.FileManaging.CreateComment;
 import ca.cmput301w14t09.FileManaging.FileSaving;
 import ca.cmput301w14t09.Model.Comment;
@@ -141,6 +143,24 @@ public class TopCommentsActivity extends ListActivity {
 
 		return true;
 
+	}
+	
+	//https://developer.android.com/training/basics/actionbar/adding-buttons.html
+	@Override 
+	public boolean onOptionsItemSelected(MenuItem item){
+		switch (item.getItemId()){
+			case R.id.sortLocation:
+				SortingController sorting = new SortingController();
+				ArrayList<Comment> sortedList = sorting.sortCommentsByLocation();
+				System.out.println(sortedList.get(0).getCommentText());
+				adapter = new ThreadAdapter(this,R.layout.thread_view, sortedList);
+				aCommentList.setAdapter(adapter);
+				adapter.notifyDataSetChanged();
+				return true;
+			default:
+				return super.onOptionsItemSelected(item);
+				
+		}
 	}
 
 	/**
