@@ -53,13 +53,13 @@ import com.google.gson.reflect.TypeToken;
 public class ElasticSearchOperations {
 
     private static String serverName = "ElasticSearch";
-    private static String postAddress = "http://cmput301.softwareprocess.es:8080/cmput301w14t09/test101/";
+    private static String postAddress = "http://cmput301.softwareprocess.es:8080/cmput301w14t09/test103/";
     
     /**
      * Userprofile string address
      */
-    private static String postAddressUuserProfile = "http://cmput301.softwareprocess.es:8080/cmput301w14t09/userprofile/test101/";
-    private static String searchAddress = "http://cmput301.softwareprocess.es:8080/cmput301w14t09/test101/_search?pretty=1";
+  //  private static String postAddressUserProfile = "http://cmput301.softwareprocess.es:8080/cmput301w14t09/test101/";
+    private static String searchAddress = "http://cmput301.softwareprocess.es:8080/cmput301w14t09/test103/";
 
     private static Gson GSON = null;
     static Comment comment;
@@ -138,7 +138,7 @@ public class ElasticSearchOperations {
              //   Gson gson = new Gson();
 
                 try {
-                    HttpPost searchRequest = new HttpPost(searchAddress);
+                    HttpPost searchRequest = new HttpPost(searchAddress + "_search?pretty=1");
                     String query = "{\"query\" : {\"query_string\" : {\"default_field\" : \"topComment\",\"query\" : \"true\"}}}";
 
                     StringEntity stringentity = new StringEntity(query);
@@ -299,10 +299,100 @@ public class ElasticSearchOperations {
         return comment;
     }
 
-    public static void pushUserProfile(final UserProfileModel uPModel){
+    public static void pushUserProfile(final UserProfileModel uPModel) {
+    	 final CountDownLatch latch = new CountDownLatch(1);
 		if (GSON == null)
 			constructGson();
 		
+		Thread thread = new Thread() {
+			
+            @Override
+            public void run() {
+                HttpClient client = new DefaultHttpClient();
+                HttpPost request = new HttpPost(postAddress+uPModel.getUniqueID().toString());
+
+                try { 
+
+                    request.setEntity(new StringEntity(GSON.toJson(uPModel)));
+
+                    HttpResponse response = client.execute(request);
+                    Log.w(serverName, response.getStatusLine().toString());
+
+                    response.getStatusLine().toString();
+                    HttpEntity entity = response.getEntity();
+
+                    BufferedReader reader = new BufferedReader(new InputStreamReader(entity.getContent()));
+                    String output = reader.readLine();
+                    while (output != null) {
+                        Log.w(serverName, output);
+                        output = reader.readLine();
+                    }
+                }
+                catch (Exception e) {
+                    e.printStackTrace();
+                }
+                latch.countDown();
+            }
+		};
+        thread.start();
+        try {
+			latch.await();
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		
+    }
+
+    public static ArrayList<UserProfileModel> pullUserProfile(final String uniqueID) throws InterruptedException {
+    	  final CountDownLatch latch = new CountDownLatch(1);
+          final ArrayList<UserProfileModel> userProfile = new ArrayList<UserProfileModel> ();
+
+          if (GSON == null)
+              constructGson();
+          
+          Thread thread = new Thread() {
+
+              @Override
+              public void run() {
+                  HttpClient client = new DefaultHttpClient();
+
+                  try {
+                	  
+                      HttpPost searchRequest = new HttpPost(searchAddress+uniqueID+"_search?pretty=1");
+                      String query = "{\"query\" : {\"query_string\" : {\"default_field\" : \"userProfile\",\"query\" : \"true\"}}}";
+
+                      StringEntity stringentity = new StringEntity(query);
+                      searchRequest.setEntity(stringentity);
+
+                      HttpResponse response = client.execute(searchRequest);
+                      String json = getEntityContent(response);
+
+                      Type elasticSearchSearchResponseType = new TypeToken<ElasticSearchSearchResponse<UserProfileModel>>(){}.getType();
+                      ElasticSearchSearchResponse<UserProfileModel> esResponse = GSON.fromJson(json, elasticSearchSearchResponseType);
+
+                      for (ElasticSearchResponse<UserProfileModel> r : esResponse.getHits()) {
+                          UserProfileModel topCommentsProfile = r.getSource();
+                          userProfile.add(topCommentsProfile);
+                      }
+
+                      // Sort by latest dated element.
+                     // Collections.sort(userProfile);
+                     // Collections.reverse(commentList);
+
+                      latch.countDown();
+                      //searchRequest.releaseConnection();	
+
+                  } catch(Exception e){
+                      e.printStackTrace();
+                  }
+
+              }
+          };
+          thread.start();
+          latch.await();
+
+          return userProfile;
+        //  return (ArrayList<Comment>) Collections.unmodifiableList(commentList);
     }
 }

@@ -19,6 +19,7 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 package ca.cmput301w14t09.Model;
 
 import java.io.Serializable;
+import java.util.UUID;
 
 import ca.cmput301w14t09.Model.GeoLocation;
 
@@ -37,6 +38,7 @@ public class User implements Serializable {
 	private GeoLocation currentLocation;
 	private String deviceId;
 	private String userName;
+	private String uniqueID;
 	private static final long serialVersionUID = 1L;		
 
 	public User() {
@@ -46,10 +48,20 @@ public class User implements Serializable {
 
 	public User(String userName) {
 		this.userName = userName;
-		this.profile = new Profile(userName);
+
+		if (userName.equalsIgnoreCase("guest"))
+			this.uniqueID = "0000";
+		else
+			this.uniqueID = UUID.randomUUID().toString();
+		
+		this.profile = new Profile(userName, uniqueID);
 		this.deviceId = "";
 	}
 
+	
+	public String getUniqueId(){
+		return this.uniqueID;
+	}
 	/**
 	 * @return the profile
 	 */

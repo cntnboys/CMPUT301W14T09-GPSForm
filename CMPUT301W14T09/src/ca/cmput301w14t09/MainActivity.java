@@ -40,6 +40,7 @@ import android.widget.ListView;
 import ca.cmput301w14t09.FileManaging.FileLoading;
 import ca.cmput301w14t09.FileManaging.FileSaving;
 import ca.cmput301w14t09.Model.User;
+import ca.cmput301w14t09.elasticSearch.ElasticSearchOperations;
 
 /**
  * 
@@ -169,7 +170,7 @@ public class MainActivity extends Activity {
 		UserList.setAdapter(adapter);
 
 	}
-
+	
 	/**
 	 * newUser is called when continue button is pressed
 	 * this method is run.

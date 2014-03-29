@@ -20,6 +20,7 @@ package ca.cmput301w14t09.Model;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.UUID;
 
 import ca.cmput301w14t09.Model.Favorite;
 import ca.cmput301w14t09.Model.UnreadMarker;
@@ -37,13 +38,15 @@ public class Profile implements Serializable {
 	private java.util.ArrayList<UnreadMarker> unreadComments;
 	private String authorName;
 	private String userName;
+	private String uniqueID;
 	private static final long serialVersionUID = 2L;
 
-	public Profile(String userName) {
+	public Profile(String userName, String uniqueID) {
 		this.favorites = new ArrayList<Favorite>();
 		this.unreadComments = new ArrayList<UnreadMarker>();
 		this.authorName = userName;
 		this.userName = userName;
+		this.uniqueID = uniqueID;
 	}
 
 	/**
@@ -116,4 +119,8 @@ public class Profile implements Serializable {
 	{
 		this.userName = userName;
 	}	
+	
+	public String getUniqueID(){
+		return this.uniqueID;
+	}
 }

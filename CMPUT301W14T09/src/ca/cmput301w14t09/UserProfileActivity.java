@@ -4,8 +4,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 import ca.cmput301w14t09.Controller.UserProfileController;
+import ca.cmput301w14t09.Model.Comment;
 import ca.cmput301w14t09.Model.User;
 import ca.cmput301w14t09.Model.UserProfileModel;
+import ca.cmput301w14t09.Model.UserProfileModelList;
+import ca.cmput301w14t09.elasticSearch.ElasticSearchOperations;
 import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Bitmap;
@@ -34,9 +37,12 @@ public class UserProfileActivity extends Activity{
 	protected Spinner maleOrFemale;
 	protected Bitmap currentPicture;
 	
+	ArrayList<UserProfileModel> userProfile = null;
+	
 	User user;
 	Intent intent;
 
+	UserProfileModelList uPModelList;
 	UserProfileController uPController;
 	
 	@Override
@@ -53,7 +59,8 @@ public class UserProfileActivity extends Activity{
 		this.userProfilePicture = (ImageView)this.findViewById(R.id.imageViewUsername);
 		this.maleOrFemale = (Spinner)this.findViewById(R.id.spinnerSex);
 		
-		this.uPController = new UserProfileController(this);
+		this.uPModelList = new UserProfileModelList();
+		this.uPController = new UserProfileController(this.uPModelList, this);
 		maleFemaleSpinner();
 	}
 	
@@ -65,10 +72,38 @@ public class UserProfileActivity extends Activity{
 		intent = getIntent();
 		user = (User) intent.getSerializableExtra("CURRENT_USER");	
 		
+		
+		
 	//	Log.e("HERE!!!!", user.getProfile().getAuthorName().toString());
-		usernameText.setText(user.getProfile().getAuthorName());
+		usernameText.setText(user.getProfile().getUserName());
+		userToProfile();
 		return true;
 
+	}
+	
+
+	/**
+	 * Add user to appropriate user profile
+	 */
+	public void userToProfile(){
+		try {
+			userProfile = ElasticSearchOperations.pullUserProfile(user.getUniqueId());
+			userProfile.get(0);
+			this.firstLastNameText.setText(userProfile.get(0).getFirstLastName().toString());
+
+			if (userProfile.get(0).getsex().equalsIgnoreCase("male"))
+				this.maleOrFemale.setSelection(0);
+			else 
+				this.maleOrFemale.setSelection(1);
+			this.currentPicture = userProfile.get(0).getPicture();
+			this.phoneText.setText(userProfile.get(0).getPhone().toString());
+			this.emailText.setText(userProfile.get(0).getEmail().toString());
+			this.biographyText.setText(userProfile.get(0).getBiography().toString());
+
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 	
 	/**
@@ -92,7 +127,6 @@ public class UserProfileActivity extends Activity{
 		startActivityForResult(intent, OBTAIN_PIC_REQUEST_CODE);
 	}
 	
-	
 	/**
 	 * Puts the picture taken on the imageView.
 	 */
@@ -110,7 +144,8 @@ public class UserProfileActivity extends Activity{
 	 * @param v
 	 */
 	public void saveUserProfile(View v){
-		this.uPController.trimUserProfile(this.firstLastNameText.getText().toString(), this.maleOrFemale.getSelectedItem().toString(),
+		String uniqueID = user.getProfile().getUniqueID();
+		this.uPController.trimUserProfile(uniqueID,this.firstLastNameText.getText().toString(), this.maleOrFemale.getSelectedItem().toString(),
 										this.currentPicture, this.phoneText.getText().toString(),
 										this.emailText.getText().toString(), this.biographyText.getText().toString());
 		

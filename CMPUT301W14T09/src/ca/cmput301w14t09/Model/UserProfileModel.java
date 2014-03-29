@@ -1,10 +1,10 @@
 package ca.cmput301w14t09.Model;
 
-import ca.cmput301w14t09.elasticSearch.ElasticSearchOperations;
 import android.graphics.Bitmap;
 
 public class UserProfileModel {
 
+	private String uniqueID;
 	private String firstLastName;
 	private String sex;
 	private String phone;
@@ -12,22 +12,25 @@ public class UserProfileModel {
 	private String biography;
 	private Bitmap picture;
 	
-	public UserProfileModel(String fLName, String sex, String phone, String email, String biography, Bitmap pic) {
+	public UserProfileModel(String uniqueID, String fLName, String sex, String phone, String email, String biography, Bitmap pic) {
+		this.uniqueID = uniqueID;
 		this.firstLastName = fLName;
 		this.sex = sex;
 		this.phone = phone;
 		this.email = email;
 		this.biography = biography;
 		this.picture = pic;
-		
-	//	ElasticSearchOperations.pushUserProfile();
+	}
+	
+	public String getUniqueID(){
+		return this.uniqueID;
 	}
 	
 	public String getFirstLastName(){
 		return this.firstLastName;
 	}
 	
-	public String sex(){
+	public String getsex(){
 		return this.sex;
 	}
 	
