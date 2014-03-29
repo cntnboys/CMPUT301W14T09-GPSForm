@@ -53,13 +53,13 @@ import com.google.gson.reflect.TypeToken;
 public class ElasticSearchOperations {
 
     private static String serverName = "ElasticSearch";
-    private static String postAddress = "http://cmput301.softwareprocess.es:8080/cmput301w14t09/test103/";
+    private static String postAddress = "http://cmput301.softwareprocess.es:8080/cmput301w14t09/test105/";
     
     /**
      * Userprofile string address
      */
   //  private static String postAddressUserProfile = "http://cmput301.softwareprocess.es:8080/cmput301w14t09/test101/";
-    private static String searchAddress = "http://cmput301.softwareprocess.es:8080/cmput301w14t09/test103/";
+    private static String searchAddress = "http://cmput301.softwareprocess.es:8080/cmput301w14t09/test105/";
 
     private static Gson GSON = null;
     static Comment comment;
@@ -135,7 +135,6 @@ public class ElasticSearchOperations {
             @Override
             public void run() {
                 HttpClient client = new DefaultHttpClient();
-             //   Gson gson = new Gson();
 
                 try {
                     HttpPost searchRequest = new HttpPost(searchAddress + "_search?pretty=1");
@@ -266,7 +265,7 @@ public class ElasticSearchOperations {
 
 
                 try{
-                    HttpPost searchRequest = new HttpPost(searchAddress);
+                    HttpPost searchRequest = new HttpPost(searchAddress+"_search");
                     String query = "{\"query\" : {\"query_string\" : {\"default_field\" : \"commentText\",\"query\" : \"" + commentText +"\"}}}";
 
                     StringEntity stringentity = new StringEntity(query);
@@ -309,7 +308,7 @@ public class ElasticSearchOperations {
             @Override
             public void run() {
                 HttpClient client = new DefaultHttpClient();
-                HttpPost request = new HttpPost(postAddress+uPModel.getUniqueID().toString());
+                HttpPost request = new HttpPost(postAddress+uPModel.getUniqueID()+"/");
 
                 try { 
 
@@ -346,7 +345,7 @@ public class ElasticSearchOperations {
 
     public static ArrayList<UserProfileModel> pullUserProfile(final String uniqueID) throws InterruptedException {
     	  final CountDownLatch latch = new CountDownLatch(1);
-          final ArrayList<UserProfileModel> userProfile = new ArrayList<UserProfileModel> ();
+          final ArrayList<UserProfileModel> userProfileList = new ArrayList<UserProfileModel> ();
 
           if (GSON == null)
               constructGson();
@@ -359,8 +358,8 @@ public class ElasticSearchOperations {
 
                   try {
                 	  
-                      HttpPost searchRequest = new HttpPost(searchAddress+uniqueID+"_search?pretty=1");
-                      String query = "{\"query\" : {\"query_string\" : {\"default_field\" : \"userProfile\",\"query\" : \"true\"}}}";
+                      HttpPost searchRequest = new HttpPost(searchAddress + "_search?pretty=1");
+                      String query = "{\"query\" : {\"query_string\" : {\"default_field\" : \"uniqueID\",\"query\" : \""+uniqueID+"\"}}}";
 
                       StringEntity stringentity = new StringEntity(query);
                       searchRequest.setEntity(stringentity);
@@ -372,13 +371,13 @@ public class ElasticSearchOperations {
                       ElasticSearchSearchResponse<UserProfileModel> esResponse = GSON.fromJson(json, elasticSearchSearchResponseType);
 
                       for (ElasticSearchResponse<UserProfileModel> r : esResponse.getHits()) {
-                          UserProfileModel topCommentsProfile = r.getSource();
-                          userProfile.add(topCommentsProfile);
+                          UserProfileModel userProfileModel = r.getSource();
+                          userProfileList.add(userProfileModel);
                       }
 
                       // Sort by latest dated element.
-                     // Collections.sort(userProfile);
-                     // Collections.reverse(commentList);
+                   //   Collections.sort(userProfileList);
+                    //  Collections.reverse(commentList);
 
                       latch.countDown();
                       //searchRequest.releaseConnection();	
@@ -392,7 +391,7 @@ public class ElasticSearchOperations {
           thread.start();
           latch.await();
 
-          return userProfile;
+          return userProfileList;
         //  return (ArrayList<Comment>) Collections.unmodifiableList(commentList);
     }
 }

@@ -14,6 +14,7 @@ import android.content.Intent;
 import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.provider.MediaStore;
+import android.util.Log;
 import android.view.Menu;
 import android.view.View;
 import android.widget.ArrayAdapter;
@@ -88,7 +89,9 @@ public class UserProfileActivity extends Activity{
 	public void userToProfile(){
 		try {
 			userProfile = ElasticSearchOperations.pullUserProfile(user.getUniqueId());
-			userProfile.get(0);
+		//	userProfile.get(0);
+		//	Log.e("Here!!", userProfile.get(0).getFirstLastName());
+			if(!userProfile.isEmpty()){
 			this.firstLastNameText.setText(userProfile.get(0).getFirstLastName().toString());
 
 			if (userProfile.get(0).getsex().equalsIgnoreCase("male"))
@@ -99,7 +102,7 @@ public class UserProfileActivity extends Activity{
 			this.phoneText.setText(userProfile.get(0).getPhone().toString());
 			this.emailText.setText(userProfile.get(0).getEmail().toString());
 			this.biographyText.setText(userProfile.get(0).getBiography().toString());
-
+			}
 		} catch (InterruptedException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
