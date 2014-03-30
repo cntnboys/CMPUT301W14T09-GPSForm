@@ -12,7 +12,6 @@ import android.graphics.Bitmap;
 public class UserProfileModelList {
 	
 	private List<UserProfileModel> list;
-	//private ArrayAdapter<UserProfileModel> adapter;
 	
 	public UserProfileModelList(){
 		this.list = new ArrayList<UserProfileModel>();
@@ -23,7 +22,6 @@ public class UserProfileModelList {
 		this.list.add(uPModel);
 		
 		ElasticSearchOperations.pushUserProfile(uPModel);
-		
 	}
 	
 	public void addUserProfileCollections(Collection<UserProfileModel> profiles){

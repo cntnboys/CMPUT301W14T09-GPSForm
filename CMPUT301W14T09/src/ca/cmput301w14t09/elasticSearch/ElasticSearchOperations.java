@@ -53,13 +53,12 @@ import com.google.gson.reflect.TypeToken;
 public class ElasticSearchOperations {
 
     private static String serverName = "ElasticSearch";
-    private static String postAddress = "http://cmput301.softwareprocess.es:8080/cmput301w14t09/test105/";
+    private static String address = "http://cmput301.softwareprocess.es:8080/cmput301w14t09/test105/";
     
     /**
      * Userprofile string address
      */
-  //  private static String postAddressUserProfile = "http://cmput301.softwareprocess.es:8080/cmput301w14t09/test101/";
-    private static String searchAddress = "http://cmput301.softwareprocess.es:8080/cmput301w14t09/test105/";
+  //  private static String searchAddress = "http://cmput301.softwareprocess.es:8080/cmput301w14t09/test105/";
 
     private static Gson GSON = null;
     static Comment comment;
@@ -82,7 +81,7 @@ public class ElasticSearchOperations {
             @Override
             public void run() {
                 HttpClient client = new DefaultHttpClient();
-                HttpPost request = new HttpPost(postAddress);
+                HttpPost request = new HttpPost(address);
 
                 try { 
 
@@ -137,7 +136,7 @@ public class ElasticSearchOperations {
                 HttpClient client = new DefaultHttpClient();
 
                 try {
-                    HttpPost searchRequest = new HttpPost(searchAddress + "_search?pretty=1");
+                    HttpPost searchRequest = new HttpPost(address + "_search?pretty=1");
                     String query = "{\"query\" : {\"query_string\" : {\"default_field\" : \"topComment\",\"query\" : \"true\"}}}";
 
                     StringEntity stringentity = new StringEntity(query);
@@ -158,8 +157,7 @@ public class ElasticSearchOperations {
                     Collections.sort(commentList);
                     Collections.reverse(commentList);
 
-                    latch.countDown();
-                    //searchRequest.releaseConnection();	
+                    latch.countDown();	
 
                 } catch(Exception e){
                     e.printStackTrace();
@@ -194,7 +192,7 @@ public class ElasticSearchOperations {
                 System.out.println("I am searching for: " + threadId);
 
                 try {
-                    HttpPost searchRequest = new HttpPost(searchAddress);
+                    HttpPost searchRequest = new HttpPost(address);
                     String query = "{\"query\" : {\"query_string\" : {\"default_field\" : \"author\",\"query\" : \"fi\"}}}";
 
                     StringEntity stringentity = new StringEntity(query);
@@ -263,9 +261,8 @@ public class ElasticSearchOperations {
                 HttpClient client = new DefaultHttpClient();
                 Gson gson = new Gson();
 
-
                 try{
-                    HttpPost searchRequest = new HttpPost(searchAddress+"_search");
+                    HttpPost searchRequest = new HttpPost(address+"_search");
                     String query = "{\"query\" : {\"query_string\" : {\"default_field\" : \"commentText\",\"query\" : \"" + commentText +"\"}}}";
 
                     StringEntity stringentity = new StringEntity(query);
@@ -284,7 +281,6 @@ public class ElasticSearchOperations {
                         comment = r.getSource();												
                     }
                     latch.countDown();
-                    //searchRequest.releaseConnection();	
 
                 } catch(Exception e){
                     e.printStackTrace();
@@ -308,7 +304,7 @@ public class ElasticSearchOperations {
             @Override
             public void run() {
                 HttpClient client = new DefaultHttpClient();
-                HttpPost request = new HttpPost(postAddress+uPModel.getUniqueID()+"/");
+                HttpPost request = new HttpPost(address+uPModel.getUniqueID()+"/");
 
                 try { 
 
@@ -358,7 +354,7 @@ public class ElasticSearchOperations {
 
                   try {
                 	  
-                      HttpPost searchRequest = new HttpPost(searchAddress + "_search?pretty=1");
+                      HttpPost searchRequest = new HttpPost(address + "_search?pretty=1");
                       String query = "{\"query\" : {\"query_string\" : {\"default_field\" : \"uniqueID\",\"query\" : \""+uniqueID+"\"}}}";
 
                       StringEntity stringentity = new StringEntity(query);
@@ -375,12 +371,7 @@ public class ElasticSearchOperations {
                           userProfileList.add(userProfileModel);
                       }
 
-                      // Sort by latest dated element.
-                   //   Collections.sort(userProfileList);
-                    //  Collections.reverse(commentList);
-
                       latch.countDown();
-                      //searchRequest.releaseConnection();	
 
                   } catch(Exception e){
                       e.printStackTrace();
@@ -392,6 +383,5 @@ public class ElasticSearchOperations {
           latch.await();
 
           return userProfileList;
-        //  return (ArrayList<Comment>) Collections.unmodifiableList(commentList);
     }
 }

@@ -23,8 +23,8 @@ public class UserProfileController {
 	
 	public void trimUserProfile(String uniqueID, String fLName, String sex, Bitmap pic, String phone,String email, String bio){
 		if(pic == null){
-			pic = BitmapFactory.decodeResource(this.activity.getResources(), R.drawable.ic_default_image);
-		}
+			pic = BitmapFactory.decodeResource(this.activity.getResources(), R.drawable.ic_userprofile);
+		} 
 		
 		if(bio.length() > MAX_BIO_LENGTH)
 			bio = bio.substring(0, MAX_BIO_LENGTH);

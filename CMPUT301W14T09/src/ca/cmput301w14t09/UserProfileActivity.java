@@ -60,9 +60,11 @@ public class UserProfileActivity extends Activity{
 		this.userProfilePicture = (ImageView)this.findViewById(R.id.imageViewUsername);
 		this.maleOrFemale = (Spinner)this.findViewById(R.id.spinnerSex);
 		
+		
 		this.uPModelList = new UserProfileModelList();
 		this.uPController = new UserProfileController(this.uPModelList, this);
 		maleFemaleSpinner();
+		initializeVariables();
 	}
 	
 	@Override
@@ -79,30 +81,33 @@ public class UserProfileActivity extends Activity{
 		usernameText.setText(user.getProfile().getUserName());
 		userToProfile();
 		return true;
-
 	}
 	
-
 	/**
 	 * Add user to appropriate user profile
 	 */
 	public void userToProfile(){
 		try {
 			userProfile = ElasticSearchOperations.pullUserProfile(user.getUniqueId());
-		//	userProfile.get(0);
-		//	Log.e("Here!!", userProfile.get(0).getFirstLastName());
-			if(!userProfile.isEmpty()){
-			this.firstLastNameText.setText(userProfile.get(0).getFirstLastName().toString());
 
+			if(!userProfile.isEmpty()){
+				if(userProfile.get(0).getPicture() != null){
+					this.currentPicture=userProfile.get(0).getPicture();
+					this.userProfilePicture.setImageBitmap(this.currentPicture);
+				}
+					
+			this.firstLastNameText.setText(userProfile.get(0).getFirstLastName().toString());
+			
 			if (userProfile.get(0).getsex().equalsIgnoreCase("male"))
 				this.maleOrFemale.setSelection(0);
 			else 
 				this.maleOrFemale.setSelection(1);
-			this.currentPicture = userProfile.get(0).getPicture();
+		
 			this.phoneText.setText(userProfile.get(0).getPhone().toString());
 			this.emailText.setText(userProfile.get(0).getEmail().toString());
 			this.biographyText.setText(userProfile.get(0).getBiography().toString());
 			}
+			
 		} catch (InterruptedException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -151,13 +156,17 @@ public class UserProfileActivity extends Activity{
 		this.uPController.trimUserProfile(uniqueID,this.firstLastNameText.getText().toString(), this.maleOrFemale.getSelectedItem().toString(),
 										this.currentPicture, this.phoneText.getText().toString(),
 										this.emailText.getText().toString(), this.biographyText.getText().toString());
-		
-	/**	this.firstLastNameText.setText(null);
-		this.maleOrFemale.setSelection(0);
-		this.currentPicture = null;
-		this.phoneText.setText(null);
-		this.emailText.setText(null);
-		this.biographyText.setText(null); **/
+
 		finish();
 	}
+
+	public void initializeVariables(){
+		this.firstLastNameText = null;
+		this.biographyText = null;
+		this.emailText = null;
+		this.phoneText = null;
+		this.maleOrFemale.setSelection(0);
+		this.currentPicture = null;
+	}
+	
 }

@@ -50,6 +50,4 @@ public class UserProfileModel {
 		return this.picture;
 	}
 	
-	
-
 }
