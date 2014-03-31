@@ -112,7 +112,7 @@ public class PictureController extends Activity{
             BitmapFactory.Options options = new BitmapFactory.Options();
 
             //downsizing image into a smaller size and will throw exception for larger images
-            options.inSampleSize = 9;
+            options.inSampleSize = 7;
 
              final Bitmap bitmap = BitmapFactory.decodeFile(fileUri.getPath(), options);
              

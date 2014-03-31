@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import ca.cmput301w14t09.Controller.UserProfileController;
-import ca.cmput301w14t09.Model.Comment;
 import ca.cmput301w14t09.Model.User;
 import ca.cmput301w14t09.Model.UserProfileModel;
 import ca.cmput301w14t09.Model.UserProfileModelList;
@@ -14,7 +13,6 @@ import android.content.Intent;
 import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.provider.MediaStore;
-import android.util.Log;
 import android.view.Menu;
 import android.view.View;
 import android.widget.ArrayAdapter;
@@ -26,6 +24,10 @@ import android.widget.TextView;
 
 public class UserProfileActivity extends Activity{
 
+	/**
+	 * Request Code that enables user to be able to take pictures with
+	 * the phones operating system.
+	 */
 	public static final int OBTAIN_PIC_REQUEST_CODE = 117; 
 			
 	protected EditText firstLastNameText;
@@ -46,6 +48,10 @@ public class UserProfileActivity extends Activity{
 	UserProfileModelList uPModelList;
 	UserProfileController uPController;
 	
+	/**
+	 * onCreate connects each variables to its corresponding widget so that it 
+	 * will be getting information from and sending information too that widget.
+	 */
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -60,13 +66,22 @@ public class UserProfileActivity extends Activity{
 		this.userProfilePicture = (ImageView)this.findViewById(R.id.imageViewUsername);
 		this.maleOrFemale = (Spinner)this.findViewById(R.id.spinnerSex);
 		
-		
 		this.uPModelList = new UserProfileModelList();
 		this.uPController = new UserProfileController(this.uPModelList, this);
+		
+		/**
+		 * onCreate also calls methods that sets every variable to a default set 
+		 * value.
+		 */
 		maleFemaleSpinner();
 		initializeVariables();
 	}
 	
+	/**
+	 * Creates an options menu but also gives adds items to the action bar, 
+	 * it also grabs the user intent that was send with this activity being 
+	 * created.
+	 */
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
 		// Inflate the menu; this adds items to the action bar if it is present.
@@ -74,10 +89,7 @@ public class UserProfileActivity extends Activity{
 
 		intent = getIntent();
 		user = (User) intent.getSerializableExtra("CURRENT_USER");	
-		
-		
-		
-	//	Log.e("HERE!!!!", user.getProfile().getAuthorName().toString());
+
 		usernameText.setText(user.getProfile().getUserName());
 		userToProfile();
 		return true;
@@ -156,10 +168,13 @@ public class UserProfileActivity extends Activity{
 		this.uPController.trimUserProfile(uniqueID,this.firstLastNameText.getText().toString(), this.maleOrFemale.getSelectedItem().toString(),
 										this.currentPicture, this.phoneText.getText().toString(),
 										this.emailText.getText().toString(), this.biographyText.getText().toString());
-
+		//Closes the activity as soon as picture is saved.
 		finish();
 	}
 
+	/**
+	 * Gives all variables and initial value.
+	 */
 	public void initializeVariables(){
 		this.firstLastNameText = null;
 		this.biographyText = null;
