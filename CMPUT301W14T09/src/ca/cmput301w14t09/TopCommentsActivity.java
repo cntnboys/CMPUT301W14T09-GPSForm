@@ -17,7 +17,7 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
 
 package ca.cmput301w14t09;
-
+#example of a main activity
 import java.util.ArrayList;
 import android.app.Activity;
 import android.app.Dialog;
