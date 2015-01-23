@@ -17,7 +17,7 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
 
 package ca.cmput301w14t09;
-
+#first page activity example
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
