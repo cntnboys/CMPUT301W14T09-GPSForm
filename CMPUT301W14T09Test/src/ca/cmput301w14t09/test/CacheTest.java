@@ -1,7 +1,7 @@
 package ca.cmput301w14t09.test;
 
 import java.util.ArrayList;
-
+Junit test examples
 import junit.framework.TestCase;
 import ca.cmput301w14t09.Controller.LocationController;
 import ca.cmput301w14t09.FileManaging.CommentFactory;
