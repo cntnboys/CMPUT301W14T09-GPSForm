@@ -43,7 +43,7 @@ import ca.cmput301w14t09.elasticSearch.ElasticSearchOperations;
  * a popup comment reply dialog. This is used for when a user is wanting to create a reply
  * to a comment
  */
-
+#good example of a popup activity
 public class PopUpReply extends PopUpComment {
 
 	CommentListActivity commentListActivity = null;
