@@ -18,9 +18,7 @@ public final class R {
     
          */
         public static final int activity_horizontal_margin=0x7f040000;
-        public static final int activity_vertical_margin=0x7f040001;
-    camera=0x7f020001;
-        public static final int ic_change_location=0x7f020002;
+       final int ic_change_location=0x7f020002;
         public static final int ic_date=0x7f020003;
         public static final int ic_deflocation=0x7f020004;
         public static final int ic_difflocation=0x7f020005;
