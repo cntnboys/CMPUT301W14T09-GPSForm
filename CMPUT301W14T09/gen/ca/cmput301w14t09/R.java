@@ -7,7 +7,7 @@
 
 package ca.cmput301w14t09;
 
-public final class R {
+public final class R {adfasdfasdf
     public errrasdfasdfasfdasdf
     }error hyasdfasdfasdfasdfasdf
     
