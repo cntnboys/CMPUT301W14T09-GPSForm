@@ -47,16 +47,9 @@ public final class R {
         public static final int final_app_name=0x7f05000c;
         public static final int hello_world=0x7f050002;
         public static final int image_view_description=0x7f050007;
-        public static final int new_username=0x7f05000d;
+        public
         public static final int title_activity_comment_list=0x7f050005;
-        public static final int title_activity_favorite=0x7f05000b;
-        public static final int title_activity_favorites=0x7f050004;
-        public static final int title_activity_top_comments=0x7f050003;
-    }
-    public static final class style {
-        /** 
-        Base application theme, dependent on API level. This theme is replaced
-        by AppBaseTheme from res/values-vXX/styles.xml on newer devices.
+        public static final int titl
     
 
             Theme customizations available in newer API levels can go in
