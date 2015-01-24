@@ -70,16 +70,7 @@ public class CommentListActivity extends ListActivity {
 
 		// Handler polling
 	
-		};
-
-		Thread update = new Thread() {
-			public void run() {
-				while(true) {
-					try {
-						updateHandler.post(updateFunction);
-						sleep(10000);
-					} catch (InterruptedException e) {
-						e.printStackTrace();
+	
 					}
 				}
 			}
