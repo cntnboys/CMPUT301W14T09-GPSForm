@@ -16,14 +16,7 @@ public final class R {
          Customize dimensions originally defined in res/values/dimens.xml (such as
          screen margins) for sw720dp devices (e.g. 10" tablets) in landscape here.
     
-t ic_no_profile=0x7f020008;
-        public static final int ic_options=0x7f020009;
-        public static final int ic_picture=0x7f02000a;
-        public static final int ic_profile=0x7f02000b;
-        public static final int ic_sortbytext=0x7f02000c;
-        public static final int ic_sortpicture=0x7f02000d;
-        public static final int icon_attachment=0x7f02000e;
-        public static final int icon_profile=0x7f02000f;
+t ic_n_profile=0x7f02000f;
         public static final int icon_user_profile=0x7f020010;
         public static final int no_img=0x7f020011;
     }
