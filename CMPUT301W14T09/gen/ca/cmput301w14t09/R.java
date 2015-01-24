@@ -19,17 +19,7 @@ public final class R {
         public static final int action_settings=0x7f08003e;
         public static final int attachmentImageView=0x7f08003a;
         public static final int authorName=0x7f080011;
-        public static final int authorNameData=0x7f080012;
-        public static final int authorText=0x7f080028;
-        public static final int button2=0x7f080003;
-        public static final int buttonReplies=0x7f080018;
-       
-        public static final int sortByDiffLocation=0x7f080040;
-        public static final int sortDate=0x7f08003c;
-        public static final int sortLocation=0x7f08003b;
-        public static final int sortPicture=0x7f08003d;
-        publicxtViewUsername=0x7f080007;
-        public static final int textView_bio=0x7f08001e;
+        publ
         public static final int textView_email=0x7f08001c;
         public static final int textView_fLastname=0x7f08001a;
         public static final int textView_phone=0x7f08001b;
