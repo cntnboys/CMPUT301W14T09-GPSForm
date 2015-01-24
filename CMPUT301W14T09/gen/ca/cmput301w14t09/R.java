@@ -23,23 +23,7 @@ public final class R {
         public static final int activity_user_profile=0x7f030004;
         public static final int comment_view=0x7f030005;
         public static final int dialog_attachment=0x7f030006;
-        p_favorite=0x7f03000f;
-        public static final int pop_up_select=0x7f030010;
-        public static final int thread_view=0x7f030011;
-    }
-    public static final class menu {
-        public static final int comment_list=0x7f070000;
-        public static final int favorite=0x7f070001;
-        public static final int favorites=0x7f070002;
-        public static final int main=0x7f070003;
-        public static final int top_comments=0x7f070004;
-        public static final int user_profile=0x7f070005;
-    }
-    public static final class string {
-        public static final int Favorite=0x7f050009;
-        puf;
-        public static final int continue_guest=0x7f05000e;
-        public static final int favButton=0x7f05000a;
+        p
         public static final int final_app_name=0x7f05000c;
         public static final int hello_world=0x7f050002;
         public static final int image_view_description=0x7f050007;
