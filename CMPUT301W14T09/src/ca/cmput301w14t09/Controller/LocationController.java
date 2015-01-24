@@ -35,11 +35,6 @@ import ca.cmput301w14t09.Model.GeoLocation;
  */
 public class LocationController {
 
-	private GeoLocation geo = new GeoLocation();
-	GeoLocation geodefault = new GeoLocation();
-	LocationManager lm = null;
-	Intent intent = null;
-
 	/**
 
 	/**
