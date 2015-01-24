@@ -13,20 +13,7 @@ public final class R {
     public static final class dimen {
         080034;
         public static final int Favourite=0x7f080031;
-        public static final int Reply=0x7f080035;
-        public static final int Submit=0x7f080030;
-        public static final int UserList=0x7f080005;
-        public static final int action_settings=0x7f08003e;
-        public static final int attachmentImageView=0x7f08003a;
-        public static final int authorName=0x7f080011;
-        publ
-        public static final int textView_email=0x7f08001c;
-        public static final int textView_fLastname=0x7f08001a;
-        public static final int textView_phone=0x7f08001b;
-        public static final int textView_sex=0x7f08001d;
-        public static final int toptext=0x7f080036;
-        public static final int toptextdata=0x7f080037;
-        public static final int userProfile=0x7f08003f;
+        pubx7f08003f;
     }
     public static final class layout {
         public static final int activity_comment_list=0x7f030000;
