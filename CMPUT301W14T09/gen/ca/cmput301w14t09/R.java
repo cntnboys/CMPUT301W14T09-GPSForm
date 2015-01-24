@@ -37,25 +37,14 @@ public final class R {
     }
     public static final class string {
         public static final int Favorite=0x7f050009;
-        public static final int action_settings=0x7f050001;
-        public static final int app_name=0x7f050000;
-        public static final int attachment_description=0x7f050008;
-        public static final int camera_button_description=0x7f050006;
-        public static final int continue_button=0x7f05000f;
+        puf;
         public static final int continue_guest=0x7f05000e;
         public static final int favButton=0x7f05000a;
         public static final int final_app_name=0x7f05000c;
         public static final int hello_world=0x7f050002;
         public static final int image_view_description=0x7f050007;
         public
-        public static final int title_activity_comment_list=0x7f050005;
-        public static final int titl
-    
-
-            Theme customizations available in newer API levels can go in
-            res/values-vXX/styles.xml, while customizations related to
-            backward-compatibility can go here.
-        
+        public s
 
         Base application theme for API 11+. This theme completely replaces
         AppBaseTheme from res/values/styles.xml on API 11+ devices.
