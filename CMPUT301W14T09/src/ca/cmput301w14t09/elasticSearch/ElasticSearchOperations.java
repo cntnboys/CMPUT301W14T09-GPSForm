@@ -46,6 +46,7 @@ import com.google.gson.reflect.TypeToken;
 
 /**
  * 
+ * Can use this code for medical projecr 302
  * @author Conner & ssowemim
  * ElasticSearchOperations contains all methods that talk to the internet that either 
  * upload information onto the elasticSearch website or pull information for the same
