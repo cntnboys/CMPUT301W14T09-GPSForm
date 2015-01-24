@@ -52,17 +52,3 @@ public class FavoriteActivity extends ListActivity{
 	}
 
 	/**
-	 * onResume popluates the listview with results from
-	 * elasticSearch, finding all of the top comments
-	 * @param thread
-	 */
-
-	public void setList() {
-		ArrayList<Comment> comments = user.getProfile().getFavorites();
-		adapter1 = new ThreadAdapter(this,
-				R.layout.thread_view, comments);
-		favList.setAdapter(adapter1);
-		adapter1.notifyDataSetChanged();
-
-	}
-}
