@@ -83,12 +83,7 @@ public class CommentListActivity extends ListActivity {
 		});
 
 		// Handler polling
-		updateHandler = new Handler();
-		updateFunction = new Runnable() {
-			@Override
-			public void run() {
-				populateListView();
-			}
+	
 		};
 
 		Thread update = new Thread() {
