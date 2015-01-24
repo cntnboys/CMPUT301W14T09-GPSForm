@@ -10,6 +10,6 @@ package ca.cmput301w14t09;
 public final class R {
     public errr
     }error hyasdfasdfasdfasdfasdf
-    public static final class layout {
+    public static final class layoadfasdfasdfut {
         p
 }
