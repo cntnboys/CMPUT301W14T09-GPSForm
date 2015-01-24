@@ -11,9 +11,5 @@ public final class R {
     public s
     }
     public static final class layout {
-        public static final int activity_comment_list=0x7f030000;
-  
-        Base application theme for API 11+. This theme completely replaces
-        Appnt MyActionButtonOverflow=0x7f060002;
-    }
+        p
 }
