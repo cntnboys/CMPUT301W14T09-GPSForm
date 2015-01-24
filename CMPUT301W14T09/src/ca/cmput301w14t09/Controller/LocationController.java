@@ -41,13 +41,7 @@ public class LocationController {
 	 * This function compares a geolocation to another geolocation in this case default or selected
 	 * If selected contains points then the geolocation will be set to defaultgeo
 	 * @param selectedgeo
-	 */
-	public void checklocations(GeoLocation selectedgeo){
-		if(selectedgeo.getLatitude()!= 0 && selectedgeo.getLongitude()!= 0){
-			geo = selectedgeo;
-		}
-		else{
-			geo = geodefault;
+
 		}
 	}
 
