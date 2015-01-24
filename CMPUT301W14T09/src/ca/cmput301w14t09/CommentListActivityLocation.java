@@ -14,20 +14,7 @@ public class CommentListActivityLocation{
 
 	/**
 	 * Return a mapview
-	 * @return
-	 */
-	public MapView getMap(){
-
-		return map;
-	}
-
-	/**
-	 * set the mapview
-	 * @param map
-	 */
-	public void setMap(MapView map){
-
-		this.map = map;
+	=
 	}
 
 	/**
