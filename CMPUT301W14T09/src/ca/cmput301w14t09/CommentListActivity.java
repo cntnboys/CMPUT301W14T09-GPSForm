@@ -66,21 +66,6 @@ import com.mapquest.android.maps.MyLocationOverlay;
  */
 public class CommentListActivity extends ListActivity {
 
-	private CommentListActivityLocation commentListActivityProduct = new CommentListActivityLocation();
-	//Activity request codes to take pictures
-	public static final int OBTAIN_PIC_REQUEST_CODE = 117;
-	public static final int MEDIA_TYPE_IMAGE = 1;
-	protected Intent intent;
-	protected User user;
-	protected Dialog dialog;
-	protected ListView aCommentList;
-
-	private MyLocationOverlay myLocationOverlay;
-	AnnotationView annotation;
-	GeoPoint currentLocation;
-	int id = 0;
-	Geocoder code = null;
-	Context context = null;
 
 
 
