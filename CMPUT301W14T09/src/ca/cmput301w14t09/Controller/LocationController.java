@@ -41,12 +41,6 @@ public class LocationController {
 	Intent intent = null;
 
 	/**
-	 * function returns geolocation object
-	 * @return
-	 */
-	public GeoLocation getGeoLocation() {
-		return geo;
-	}
 
 	/**
 	 * This function compares a geolocation to another geolocation in this case default or selected
