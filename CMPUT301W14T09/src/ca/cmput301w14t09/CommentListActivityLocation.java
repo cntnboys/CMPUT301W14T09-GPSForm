@@ -26,15 +26,7 @@ public class CommentListActivityLocation{
 		map.setBuiltInZoomControls(true);
 	}
 
-	/**
-	 * set up a MyLocationOverlay and execute the runnable once we have a location fix  http://developer.mapquest.com/web/products/featured/android-maps-api/documentation samples download
-	 */
-	public void setupMyLocation(final CommentListActivity commentListActivity,
-			final LocationController lc1){
-
-		commentListActivity.setMyLocationOverlay(new MyLocationOverlay(
-				commentListActivity, map));
-		commentListActivity.getMyLocationOverlay().enableMyLocation();
+	/**=.enableMyLocation();
 		commentListActivity.getMyLocationOverlay().runOnFirstFix(new Runnable(){
 
 			@Override
