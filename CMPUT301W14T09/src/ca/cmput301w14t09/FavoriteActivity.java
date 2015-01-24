@@ -28,15 +28,7 @@ import android.os.Bundle;
 import an
  * This activity is responsible for the favourite activity that is displayed when favourite button is clicked
  * by the user in TopCommentsActivity. It creates the menu and the list in which the users favourites are displayed.
- * 
- */
-public class FavoriteActivity extends ListActivity{
-
-	//Initialize all activity vars
-
-
-	/**
-	 * This method is called when the app is first starts up.
+ * first starts up.
 	 */
 	@Override
 	protected void onCreate(Bundle savedInstanceState){
