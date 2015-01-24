@@ -8,12 +8,7 @@
 package ca.cmput301w14t09;
 
 public final class R {
-    public static final class attr {
-    }
-    public static final class dimen {
-        080034;
-        public static final int Favourite=0x7f080031;
-        pubx7f08003f;
+    public s
     }
     public static final class layout {
         public static final int activity_comment_list=0x7f030000;
@@ -37,12 +32,7 @@ public final class R {
 
         Base application theme for API 14+. This theme completely replaces
         AppBaseTheme from BOTH res/values/styles.xml and
-        res/values-v11/styles.xml on API 14+ devices.
-        http://stackoverflow.com/questions/21300920/change-action-bar-overflow-icon
-    
-         */
-        public static final int AppBaseTheme=0x7f060000;
-        /**  Application theme. 
+        res/values-v11
  All customizations that are NOT specific to a particular API-level can go here. 
          */
         public static final int AppTheme=0x7f060001;
