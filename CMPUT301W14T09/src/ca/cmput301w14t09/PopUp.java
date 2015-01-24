@@ -21,6 +21,7 @@ import android.app.Activity;
 import android.app.Dialog;
 
 /**
+ * can use this for popups for medical instrucments
  * @author Conner
  * Contains a dialog and activity in order to initialize a dialog popup
  * Base class for popups, can be specialized into PopupComment
