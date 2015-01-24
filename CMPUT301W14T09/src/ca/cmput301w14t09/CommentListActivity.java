@@ -35,20 +35,6 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ListView;
-import android.widget.Toast;
-import ca.cmput301w14t09.Controller.LocationController;
-import ca.cmput301w14t09.Controller.SortingController;
-import ca.cmput301w14t09.FileManaging.FileSaving;
-import ca.cmput301w14t09.Model.Comment;
-import ca.cmput301w14t09.Model.CommentAdapter;
-import ca.cmput301w14t09.Model.GeoLocation;
-import ca.cmput301w14t09.Model.User;
-import ca.cmput301w14t09.elasticSearch.ElasticSearchOperations;
-import ca.cmput301w14t09.elasticSearch.Server;
-
-import com.mapquest.android.Geocoder;
-import com.mapquest.android.maps.AnnotationView;
-import com.mapquest.android.maps.GeoPoint;
 import com.mapquest.android.maps.MyLocationOverlay;
 
 /**
