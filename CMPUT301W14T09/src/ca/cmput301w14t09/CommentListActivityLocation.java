@@ -30,18 +30,7 @@ public class CommentListActivityLocation{
 		commentListActivity.getMyLocationOverlay().runOnFirstFix(new Runnable(){
 
 			@Override
-			public void run(){
-
-				commentListActivity.setCurrentLocation(commentListActivity
-						.getMyLocationOverlay().getMyLocation());
-				lc1.setGeodefault(commentListActivity.getCurrentLocation()
-						.getLatitude(), commentListActivity
-						.getCurrentLocation().getLongitude());
-				map.getController().animateTo(
-						commentListActivity.getCurrentLocation());
-				map.getController().setZoom(14);
-				map.getOverlays().add(
-						commentListActivity.getMyLocationOverlay());
+		=onOverlay());
 				commentListActivity.getMyLocationOverlay().setFollowing(true);
 			}
 		});
