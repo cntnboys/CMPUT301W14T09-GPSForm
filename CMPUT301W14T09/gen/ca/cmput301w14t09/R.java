@@ -10,6 +10,8 @@ package ca.cmput301w14t09;
 public final class R {
     public errrasdfasdfasfdasdf
     }error hyasdfasdfasdfasdfasdf
+    
+    asdfasdfadfs
     public static final class layoadfasdfasdfut {
         p
 }adsfasdfasdf
