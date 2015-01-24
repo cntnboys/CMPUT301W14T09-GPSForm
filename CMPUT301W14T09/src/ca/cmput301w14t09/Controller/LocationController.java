@@ -64,13 +64,7 @@ public class LocationController {
 
 	/**
 	 * @return the geodefault
-	 */
-	public GeoLocation getGeodefault(){
 
-		return geodefault;
-	}
-
-	/**
 	 * @param geodefault the geodefault to set
 	 */
 	public void setGeodefault(double lat, double lng){
