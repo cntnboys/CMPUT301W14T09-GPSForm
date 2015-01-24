@@ -78,22 +78,7 @@ public class CommentListActivity extends ListActivity {
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
-		super.onCreate(savedInstanceState);
-		setContentView(R.layout.activity_comment_list);
-		favList = (ListView) findViewById(android.R.id.list);
-
-		//setup map
-		commentListActivityProduct.setupMapView(this);
-		commentListActivityProduct.setupMyLocation(this, lc1);
-
-		favList.setOnItemClickListener(new OnItemClickListener(){
-
-			public void onItemClick(AdapterView<?> arg0, View arg1, int arg2,long arg3) {
-
-				Comment thread = (Comment)(favList.getItemAtPosition(arg2)); 
-				optionsDialog(thread);
-
-			}
+	
 			
 		});
 
