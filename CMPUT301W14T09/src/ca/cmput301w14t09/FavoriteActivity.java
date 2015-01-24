@@ -25,19 +25,7 @@ import android.app.ListActivity;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.os.Bundle;
-import android.view.Menu;
-import android.widget.EditText;
-import android.widget.ImageButton;
-import android.widget.ImageView;
-import android.widget.ListView;
-import ca.cmput301w14t09.Controller.PictureController;
-import ca.cmput301w14t09.Model.Comment;
-import ca.cmput301w14t09.Model.ThreadAdapter;
-import ca.cmput301w14t09.Model.User;
-
-/**
- * 
- * @author Conner, Micheal
+import an
  * This activity is responsible for the favourite activity that is displayed when favourite button is clicked
  * by the user in TopCommentsActivity. It creates the menu and the list in which the users favourites are displayed.
  * 
