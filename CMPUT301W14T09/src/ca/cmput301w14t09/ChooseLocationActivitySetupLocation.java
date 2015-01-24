@@ -21,13 +21,9 @@ public class ChooseLocationActivitySetupLocation
 	private GeoPoint currentLocation;
 
 	/**
-
 	/**
 	 * set your curent geo location
-	 * @param currentLocation
-	 */
-	public void setCurrentLocation(GeoPoint currentLocation){
-
+	 
 		this.currentLocation = currentLocation;
 	}
 
