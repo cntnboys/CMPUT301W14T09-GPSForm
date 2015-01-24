@@ -23,19 +23,7 @@ public final class R {
         public static final int authorText=0x7f080028;
         public static final int button2=0x7f080003;
         public static final int buttonReplies=0x7f080018;
-        public static final int buttonSave=0x7f08000e;
-        public static final int button_return=0x7f080020;
-        publ7f080039;
-        public static final int mq_geocode_btn=0x7f080023;
-        public static final int mq_geocode_input=0x7f080022;
-        public static final int okbutton=0x7f080024;
-        public static final int picImagePreview=0x7f08002c;
-        public static final int pic_image_view=0x7f080025;
-        public static final int pic_text=0x7f080026;
-        public static final int pic_timestamp=0x7f080027;
-        public static final int reply=0x7f080033;
-        public static final int replyImagePreview=0x7f080015;
-        public static final int save=0x7f08002a;
+       
         public static final int sortByDiffLocation=0x7f080040;
         public static final int sortDate=0x7f08003c;
         public static final int sortLocation=0x7f08003b;
