@@ -19,22 +19,6 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 package ca.cmput301w14t09;
 #first page activity example
 import android.app.Activity;
-import android.content.Intent;
-import android.os.Bundle;
-import android.view.Menu;
-import android.view.View;
-import android.widget.AdapterView;
-import android.widget.AdapterView.OnItemClickListener;
-import android.widget.ArrayAdapter;
-import android.widget.EditText;
-import android.widget.ListView;
-import android.widget.Toast;
-import ca.cmput301w14t09.FileManaging.FileLoading;
-import ca.cmput301w14t09.FileManaging.FileSaving;
-import ca.cmput301w14t09.Model.User;
-
-/**
- * 
  * @author Conner
  * MainActivity of the app.
  * displays a list of current users on the device
@@ -54,41 +38,21 @@ public class MainActivity extends Activity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
 
-		editText = (EditText) findViewById(R.id.editUsername);
-		UserList = (ListView) findViewById(R.id.UserList);
-
-		//listener that loads the selected user from the list
-		UserList.setOnItemClickListener(new OnItemClickListener() {
-
-			public void onItemClick(AdapterView<?> arg0, View arg1, int arg2,
-					long arg3) {
-
-				String getUser = (String) (UserList.getItemAtPosition(arg2));
-				user = new User();
-				user = loadUser(getUser);
-				topComments(user);
-			}
+		
 
 		});
 	}
 
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
-		// Inflate the menu; this adds items to the action bar if it is present.
-		getMenuInflater().inflate(R.menu.main, menu);
-		return true;
-	}
-
+	
+	
 	/**
 	 * onStart populates the listview with clickable usernames
 	 * that have already been created on the device
 	 */
 	public void onStart() {
-		super.onStart();
-		String[] listName = FileLoading.loadFromFile(this);
-		ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,
-				R.layout.list_view, listName);
-		UserList.setAdapter(adapter);
+	
 
 	}
 
@@ -101,13 +65,7 @@ public class MainActivity extends Activity {
 	 * @param v
 	 */
 	public void newUser(View v) {
-		editText = (EditText) findViewById(R.id.editUsername);
-		String newUserName = editText.getText().toString().replaceAll("\\s+","");
-		if (!(newUserName.equals(""))){
-			user = new User(editText.getText().toString());
-			FileSaving.appendUserNameToList(user.getUserName(), this);
-			FileSaving.saveUserFile(user, this);
-			topComments(user);
+	
 		}else{
 			Toast.makeText(getApplicationContext(),"No UserName specified", Toast.LENGTH_LONG).show();
 		}
@@ -119,9 +77,7 @@ public class MainActivity extends Activity {
 	 * @param user
 	 */
 	public void topComments(User user) {
-		Intent intent = new Intent(MainActivity.this, TopCommentsActivity.class);
-		intent.putExtra("CURRENT_USER", user);
-		MainActivity.this.startActivity(intent);
+	
 	}
 
 	/**
@@ -131,8 +87,7 @@ public class MainActivity extends Activity {
 	 * @param v
 	 */
 	public void guestUser(View v) {
-		user = new User("Guest");
-		topComments(user);
+	
 	}
 
 	/**
@@ -143,8 +98,7 @@ public class MainActivity extends Activity {
 	 * @return
 	 */
 	public User loadUser(String text) {
-		user = FileLoading.returnUser(text, this);
-		return user;
+		
 	}
 
 }
