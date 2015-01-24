@@ -12,27 +12,14 @@ public class CommentListActivityLocation{
 
 	private MapView map;
 
-	/**
-	 * Return a mapview
-	=
-	}
 
-	/**
-	 * set your map and enable default zoom controls  http://developer.mapquest.com/web/products/featured/android-maps-api/documentation samples download
-	 */
+
+
 	public void setupMapView(CommentListActivity commentListActivity){
 
-		this.map = (MapView) commentListActivity.findViewById(R.id.map);
-		map.setBuiltInZoomControls(true);
+
 	}
 
-	/**=.enableMyLocation();
-		commentListActivity.getMyLocationOverlay().runOnFirstFix(new Runnable(){
-
-			@Override
-		=onOverlay());
-				commentListActivity.getMyLocationOverlay().setFollowing(true);
-			}
-		});
+	
 	}
 }
