@@ -14,7 +14,6 @@ import com.mapquest.android.maps.MapView;
  *  I downloaded the Android Maps API & Samples which included the library I used and all the bits for this class
  *  geolocation that will be returned upon leaving activity
  *  @author Cameron Alexander
- */
 
 public class ChooseLocationActivitySetupLocation
 {
@@ -22,13 +21,6 @@ public class ChooseLocationActivitySetupLocation
 	private GeoPoint currentLocation;
 
 	/**
-	 * Get your current location
-	 * @return
-	 */
-	public GeoPoint getCurrentLocation(){
-
-		return currentLocation;
-	}
 
 	/**
 	 * set your curent geo location
