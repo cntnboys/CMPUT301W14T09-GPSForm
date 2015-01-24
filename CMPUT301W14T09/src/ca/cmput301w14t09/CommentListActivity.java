@@ -107,34 +107,7 @@ public class CommentListActivity extends ListActivity {
 	 * https://developer.android.com/training/basics/actionbar/adding-buttons.html
 	 * 
 	 */
-	@Override 
-	public boolean onOptionsItemSelected(MenuItem item){
-		boolean sorted = true;
 
-		switch (item.getItemId()) {
-			case R.id.userProfile:
-				Intent intent = new Intent(this, UserProfileActivity.class);
-				intent.putExtra("CURRENT_USER", user);   
-				startActivity(intent);
-				break;
-	
-			case R.id.sortLocation:     
-				sortByLocation();
-				break;
-			case R.id.sortDate:
-				sortByDate();
-				break;
-			case R.id.sortPicture:
-				sortByPicture();
-				break;	
-			default:
-				filter = Filter.NONE;
-				sorted = false;
-				break;
-		}
-
-		return sorted;
-	}
 
 	/**
 	 * Sorts the list by location.
