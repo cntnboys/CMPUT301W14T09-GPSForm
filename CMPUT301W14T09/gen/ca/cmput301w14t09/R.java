@@ -25,16 +25,7 @@ public final class R {
         public static final int buttonReplies=0x7f080018;
         public static final int buttonSave=0x7f08000e;
         public static final int button_return=0x7f080020;
-        public static final int cancel=0x7f08002b;
-        public static final int changebutton=0x7f08002e;
-        pu4;  public static final int imButtonAttachment=0x7f080019;
-        public static final int imButtonProfile=0x7f080017;
-        public static final int imageViewAttachment=0x7f080016;
-        public static final int imageViewUserProfile=0x7f08000c;
-        public static final int imageView_profilePicture=0x7f08001f;
-        public static final int map=0x7f080000;
-        public static final int middletext=0x7f080038;
-        public static final int middletextdata=0x7f080039;
+        publ7f080039;
         public static final int mq_geocode_btn=0x7f080023;
         public static final int mq_geocode_input=0x7f080022;
         public static final int okbutton=0x7f080024;
