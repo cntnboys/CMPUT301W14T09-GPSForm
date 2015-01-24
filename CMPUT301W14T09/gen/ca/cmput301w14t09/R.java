@@ -16,15 +16,7 @@ public final class R {
          Customize dimensions originally defined in res/values/dimens.xml (such as
          screen margins) for sw720dp devices (e.g. 10" tablets) in landscape here.
     
-         */
-        public static final int activity_horizontal_margin=0x7f040000;
-       final int ic_change_location=0x7f020002;
-        public static final int ic_date=0x7f020003;
-        public static final int ic_deflocation=0x7f020004;
-        public static final int ic_difflocation=0x7f020005;
-        public static final int ic_launcher=0x7f020006;
-        public static final int ic_location=0x7f020007;
-        public static final int ic_no_profile=0x7f020008;
+t ic_no_profile=0x7f020008;
         public static final int ic_options=0x7f020009;
         public static final int ic_picture=0x7f02000a;
         public static final int ic_profile=0x7f02000b;
