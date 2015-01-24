@@ -82,30 +82,9 @@ public class CommentListActivity extends ListActivity {
 	Geocoder code = null;
 	Context context = null;
 
-	//initialize popups
-	protected PopUpReply popUpReply = new PopUpReply(this);
-	protected PopUpSelect popUpSelect = new PopUpSelect(this);
 
-	//comment vars
-	protected CommentAdapter adapter;
-	Comment comment;
-	protected ListView favList;
-	protected String firstComment;
 
-	//init handlers for  caching
-	private Handler  updateHandler;
-	private Runnable updateFunction;
 
-	//File uri to store Images
-	private Uri fileUri;
-
-	//selected geolocation object used for when person selects geolocation from
-	GeoLocation selectedgeo = new GeoLocation();
-	GeoLocation selectedgeosort = new GeoLocation();
-
-	//new Location Controller 
-	final LocationController lc1 = new LocationController();
-	
 	//filter used for sorting
 	public enum Filter {
 		DATE, PICTURE, LOCATION, DIFFLOCATION, NONE;
