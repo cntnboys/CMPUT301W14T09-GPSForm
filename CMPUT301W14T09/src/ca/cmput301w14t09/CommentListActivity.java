@@ -53,28 +53,11 @@ public class CommentListActivity extends ListActivity {
 
 
 
-	//filter used for sorting
-	public enum Filter {
-		DATE, PICTURE, LOCATION, DIFFLOCATION, NONE;
-	}
-	private Filter filter = Filter.NONE;
-
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 	
 			
 		});
-
-		// Handler polling
-	
-	
-					}
-				}
-			}
-		};
-		
-		update.start();
-	}
 	
 	/**
 	 * This function inflates the menu and adds items to the action bar if it is present.
