@@ -11,17 +11,7 @@ public final class R {
     public static final class attr {
     }
     public static final class dimen {
-        /**  Default screen margins, per the Android Design guidelines. 
-
-         Customize dimensions originally defined in res/values/dimens.xml (such as
-         screen margins) for sw720dp devices (e.g. 10" tablets) in landscape here.
-    
-t ic_n_profile=0x7f02000f;
-        public static final int icon_user_profile=0x7f020010;
-        public static final int no_img=0x7f020011;
-    }
-    public static final class id {
-        public static final int Edit=0x7f080034;
+        080034;
         public static final int Favourite=0x7f080031;
         public static final int Reply=0x7f080035;
         public static final int Submit=0x7f080030;
