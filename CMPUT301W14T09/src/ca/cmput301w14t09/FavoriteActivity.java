@@ -45,20 +45,6 @@ import ca.cmput301w14t09.Model.User;
 public class FavoriteActivity extends ListActivity{
 
 	//Initialize all activity vars
-	public static final int OBTAIN_PIC_REQUEST_CODE = 117;
-	public static final int MEDIA_TYPE_IMAGE = 1;
-	PictureController pictureController;
-	protected Intent intent;
-	protected User user;
-	protected Dialog dialog;
-	protected ListView favList;
-	Comment comment;
-	ImageButton addPicImageButton;
-	ImageView picImagePreview;
-	Bitmap picture = null;
-	EditText authorText;
-	EditText commentText;
-	ThreadAdapter adapter1;
 
 
 	/**
