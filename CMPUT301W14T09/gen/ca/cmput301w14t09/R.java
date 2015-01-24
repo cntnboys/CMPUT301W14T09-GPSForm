@@ -12,29 +12,10 @@ public final class R {
     }
     public static final class layout {
         public static final int activity_comment_list=0x7f030000;
-        public static final int activity_favorite=0x7f030001;
-        public static final int activity_main=0x7f030002;
-        public static final int activity_top_comments=0x7f030003;
-        public static final int activity_user_profile=0x7f030004;
-        public static final int comment_view=0x7f030005;
-        public static final int dialog_attachment=0x7f030006;
-        p
-        public static final int final_app_name=0x7f05000c;
-        public static final int hello_world=0x7f050002;
-        public static final int image_view_description=0x7f050007;
-        public
-        public s
+  
 
         Base application theme for API 11+. This theme completely replaces
-        AppBaseTheme from res/values/styles.xml on API 11+ devices.
-    
- API 11 theme customizations can go here. 
-
-        Base application theme for API 14+. This theme completely replaces
-        AppBaseTheme from BOTH res/values/styles.xml and
-        res/values-v11
- All customizations that are NOT specific to a particular API-level can go here. 
-         */
+        AppBaseThem
         public static final int AppTheme=0x7f060001;
         public static final int MyActionButtonOverflow=0x7f060002;
     }
