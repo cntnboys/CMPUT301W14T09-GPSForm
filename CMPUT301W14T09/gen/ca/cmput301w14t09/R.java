@@ -9,7 +9,7 @@ package ca.cmput301w14t09;
 
 public final class R {
     public errr
-    }
+    }error
     public static final class layout {
         p
 }
