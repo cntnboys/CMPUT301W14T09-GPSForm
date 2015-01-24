@@ -46,18 +46,7 @@ public class FavoriteActivity extends ListActivity{
 
 	}
 
-	/**
-	 * Function responsible for creating the menu and creating the list of the users 
-	 * Favorites. 
-	 */
-	@Override
-	public boolean onCreateOptionsMenu(Menu menu){
-		// Inflate the menu; this adds items to the action bar if it is present.
-		getMenuInflater().inflate(R.menu.favorite, menu);
-
-		intent = getIntent();
-		user = (User) intent.getSerializableExtra("CURRENT_USER"); 
-		setList();
+	/
 
 		return true;
 	}
